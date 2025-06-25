@@ -37,11 +37,24 @@ dependencies:
   cloud_firestore: ^5.6.9
   firebase_core: ^3.14.0
   flutter_launcher_icons: ^0.14.4
+  flutter_native_splash: ^2.4.6
 
 flutter_launcher_icons:
   android: true
   background_color: "#ffffff"
   image_path: "assets/icon/app_icon.png"
+# dart run flutter_launcher_icons
+
+flutter_native_splash:
+  color: "#42a5f5"
+  image: "assets/icon/app_icon.png"
+  android: true
+  ios: false
+  web: false
+  android_12:
+    color: "#42a5f5"
+    image: "assets/icon/app_icon.png"
+# dart run flutter_native_splash:create
 
 
 

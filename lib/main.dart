@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_cardy/home.dart';
-import 'package:flutter_cardy/login.dart';
-import 'package:flutter_cardy/register.dart';
+import 'package:flutter_cardy/game/edit_view.dart';
+import 'package:flutter_cardy/game/new_view.dart';
+import 'package:flutter_cardy/game/game_view.dart';
+import 'package:flutter_cardy/home/home_view.dart';
+import 'package:flutter_cardy/auth/login_view.dart';
+import 'package:flutter_cardy/auth/register_view.dart';
 import 'package:flutter_cardy/test.dart';
 
 void main() async {
@@ -21,10 +24,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Home(),
+      home: EditGame(),
+      // home: NewGame(),
+      // home: GameView(),
+
+      // home: Home(),
       // home: Login(),
       // home: Register(),
-      // home: AddUserScreen(),
     );
   }
 }

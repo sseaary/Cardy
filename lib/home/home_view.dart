@@ -119,14 +119,14 @@ class _HomeState extends State<Home> {
             context: context,
             isScrollControlled: true, // เปิดให้สูงเกินค่า default
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+              borderRadius: BorderRadius.circular(26),
             ),
             backgroundColor: Colors.white,
             builder: (context) {
               return Container(
                 height:
                     MediaQuery.of(context).size.height *
-                    0.3, // สูง 70% ของหน้าจอ
+                    0.4, // % ความสูงของหน้าจอ
                 padding: EdgeInsets.only(
                   bottom: MediaQuery.of(context).viewInsets.bottom,
                   left: 16,
@@ -135,16 +135,51 @@ class _HomeState extends State<Home> {
                 ),
                 child: Column(
                   children: [
-                    TextField(
-                      decoration: InputDecoration(
-                        labelText: 'Title',
-                        border: OutlineInputBorder(),
+                    Title(
+                      color: Colors.black,
+                      child: Text(
+                        "My Card",
+                        style: TextStyle(
+                          fontSize: 30,
+                          fontWeight: FontWeight.w900,
+                        ),
                       ),
                     ),
-                    SizedBox(height: 16),
-                    ElevatedButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text('Create'),
+                    SizedBox(height: 60),
+                    Container(
+                      margin: EdgeInsets.symmetric(horizontal: 30),
+
+                      child: TextField(
+                        decoration: InputDecoration(
+                          labelText: 'Title',
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 80),
+                    Container(
+                      width: 200,
+                      height: 48,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color(0xFF2E82DB),
+                          foregroundColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadiusGeometry.circular(12),
+                          ),
+                        ),
+
+                        child: Text(
+                          "create",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 20,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),

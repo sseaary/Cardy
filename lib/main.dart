@@ -24,11 +24,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: EditGame(),
+
+      // home: EditGame(),
       // home: NewGame(),
       // home: GameView(),
-
-      // home: Home(),
+      home: Home(),
       // home: Login(),
       // home: Register(),
     );

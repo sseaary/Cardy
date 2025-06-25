@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/game_view.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -87,23 +88,31 @@ class _HomeState extends State<Home> {
             child: ListView.separated(
               itemCount: 4,
               itemBuilder: (context, index) {
-                return Container(
-                  height: 100,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(horizontal: 40),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      'Level - A1',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
-                      ),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GameView()),
+                    );
+                  },
+                  child: Container(
+                    height: 100,
+                    padding: EdgeInsets.all(16),
+                    margin: EdgeInsets.symmetric(horizontal: 40),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Colors.white,
                     ),
-                    subtitle: Text("cards: 20"),
+                    child: ListTile(
+                      title: Text(
+                        'Level - A1',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      subtitle: Text("cards: 20"),
+                    ),
                   ),
                 );
               },

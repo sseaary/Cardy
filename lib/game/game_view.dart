@@ -65,7 +65,7 @@ class _GameViewState extends State<GameView> {
             children: [
               IconButton(
                 onPressed: () {
-                  if ((index - 1) <= 0) return;
+                  if ((index - 1) <= -1) return;
                   index--;
                   isOn = true;
                   setState(() {});

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/data.dart';
 import 'package:flutter_cardy/game/game_view.dart';
 
 class Home extends StatefulWidget {
@@ -9,6 +10,15 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // late List<dynamic> vocab;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // vocab = vocabJson;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,6 +81,9 @@ class _HomeState extends State<Home> {
             padding: const EdgeInsets.all(24.0),
 
             child: TextField(
+              // onChanged: (value) {
+              //   setState(() {});
+              // },
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
@@ -86,33 +99,40 @@ class _HomeState extends State<Home> {
           SizedBox(height: 40),
           Expanded(
             child: ListView.separated(
-              itemCount: 4,
+              itemCount: titleList.length,
               itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => GameView()),
-                    );
-                  },
-                  child: Container(
-                    height: 100,
-                    padding: EdgeInsets.all(16),
-                    margin: EdgeInsets.symmetric(horizontal: 40),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                      color: Colors.white,
-                    ),
-                    child: ListTile(
-                      title: Text(
-                        'Level - A1',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
+                final title = titleList[index];
+
+                return Container(
+                  height: 100,
+                  padding: EdgeInsets.all(16),
+                  margin: EdgeInsets.symmetric(horizontal: 40),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    color: Colors.white,
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      'Level - ${title["title_name"]}',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
                       ),
-                      subtitle: Text("cards: 20"),
                     ),
+                    subtitle: Text("cards: ${title["total"]}"),
+                    onTap: () {
+                      List newVocabsFromLevel = vocabJson
+                          .where((json) => json['level'] == title["title_name"])
+                          .toList();
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) {
+                            return GameView(vocabs: newVocabsFromLevel);
+                          },
+                        ),
+                      );
+                    },
                   ),
                 );
               },

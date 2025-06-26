@@ -6,7 +6,6 @@ import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/home/home_view.dart';
 import 'package:flutter_cardy/auth/login_view.dart';
 import 'package:flutter_cardy/auth/register_view.dart';
-import 'package:flutter_cardy/test.dart';
 
 void main() async {
   // Code ไว้เชื่อม firebase

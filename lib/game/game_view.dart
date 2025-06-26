@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/widget/card_vocab.dart';
 
 class GameView extends StatefulWidget {
-  const GameView({super.key});
+  final List vocabs;
+  const GameView({super.key, required this.vocabs});
 
   @override
   State<GameView> createState() => _GameViewState();
 }
 
 class _GameViewState extends State<GameView> {
-  bool isTap = false;
-
+  bool isOn = true;
+  int index = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF0D243D),
       appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+        ),
         title: Text("level", style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xFF0D243D),
         actions: [
@@ -25,89 +33,26 @@ class _GameViewState extends State<GameView> {
         ],
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
-            padding: const EdgeInsets.all(50.0),
-            child: GestureDetector(
-              onTap: () {
-                setState(() {
-                  isTap = !isTap;
-                });
-              },
-
-              child: isTap
-                  ? Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Color(0xFF8FD9FF),
-                      ),
-                      padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
-                      width: 300,
-                      height: 300,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: PopupMenuButton(
-                              itemBuilder: (context) => [
-                                PopupMenuItem(
-                                  value: 'edit',
-                                  child: Row(
-                                    children: [Icon(Icons.edit), Text('Edit')],
-                                  ),
-                                ),
-                                PopupMenuItem(
-                                  value: 'delete',
-                                  child: Row(
-                                    children: [
-                                      Icon(Icons.delete),
-                                      Text('Delete'),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                              icon: Icon(Icons.more_horiz),
-                            ),
-                          ),
-                          Text(
-                            "word",
-                            style: TextStyle(fontSize: 30),
-                            textAlign:
-                                TextAlign.end, //หาทางแก้ตำแหน่งให้อยู่ตรงกลาง
-                          ),
-                        ],
-                      ),
-                    )
-                  : Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(12),
-                        color: Colors.white,
-                      ),
-                      padding: EdgeInsets.fromLTRB(20, 10, 10, 0),
-                      width: 300,
-                      height: 300,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          // IconButton(
-                          //   onPressed: () {},
-                          //   icon: Icon(Icons.arrow_back_ios),
-                          // ),
-                          Text("แปล", style: TextStyle(fontSize: 30)),
-                        ],
-                      ),
-                    ),
-            ),
+          SizedBox(width: double.infinity),
+          GestureDetector(
+            onTap: () {
+              isOn = !isOn;
+              setState(() {});
+            },
+            child: CardVocab(vocab: widget.vocabs[index], isOn: isOn),
           ),
           SizedBox(height: 80),
-          Container(
+          SizedBox(
             width: 200,
             height: 48,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                if ((index + 1) >= widget.vocabs.length) return;
+                index++;
+                isOn = true;
+                setState(() {});
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Color(0xFF2E82DB),

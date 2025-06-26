@@ -15,6 +15,15 @@ class GameView extends StatefulWidget {
 class _GameViewState extends State<GameView> {
   bool isOn = true;
   int index = 0;
+  bool isFavorite = false;
+  late List<bool> favoriteStatus;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    favoriteStatus = List.filled(widget.vocabs.length, false);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +77,7 @@ class _GameViewState extends State<GameView> {
                   if ((index - 1) <= -1) return;
                   index--;
                   isOn = true;
+                  isFavorite = false;
                   setState(() {});
                 },
                 icon: Icon(Icons.arrow_back_ios_rounded),
@@ -79,6 +89,7 @@ class _GameViewState extends State<GameView> {
                   if ((index + 1) >= widget.vocabs.length) return;
                   index++;
                   isOn = true;
+                  isFavorite = false;
                   setState(() {});
                 },
                 icon: Icon(Icons.arrow_forward_ios_rounded),
@@ -86,6 +97,23 @@ class _GameViewState extends State<GameView> {
                 color: Colors.white,
               ),
             ],
+          ),
+          Spacer(),
+          SafeArea(
+            minimum: const EdgeInsets.only(bottom: 20),
+            child: IconButton(
+              onPressed: () {
+                setState(() {
+                  favoriteStatus[index] = !favoriteStatus[index];
+                });
+              },
+              icon: Icon(
+                favoriteStatus[index] ? Icons.favorite : Icons.favorite_border,
+              ),
+
+              iconSize: 40,
+              color: Colors.white,
+            ),
           ),
         ],
       ),

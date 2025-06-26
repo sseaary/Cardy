@@ -10,15 +10,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // late List<dynamic> vocab;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    // vocab = vocabJson;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,7 +119,10 @@ class _HomeState extends State<Home> {
                         context,
                         MaterialPageRoute(
                           builder: (context) {
-                            return GameView(vocabs: newVocabsFromLevel);
+                            return GameView(
+                              vocabs: newVocabsFromLevel,
+                              title: '${title["title_name"]}',
+                            );
                           },
                         ),
                       );

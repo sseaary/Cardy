@@ -1,10 +1,18 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/edit_view.dart';
 
 class CardVocab extends StatefulWidget {
   final Map vocab;
   final bool isOn;
+  final String title;
 
-  const CardVocab({super.key, required this.vocab, required this.isOn});
+  const CardVocab({
+    super.key,
+    required this.vocab,
+    required this.isOn,
+    required this.title,
+  });
 
   @override
   State<CardVocab> createState() => _MyWidgetState();
@@ -81,6 +89,14 @@ class _MyWidgetState extends State<CardVocab> {
             },
             itemBuilder: (context) => [
               PopupMenuItem(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditGame(title: '${widget.title}'),
+                    ),
+                  );
+                },
                 value: 'edit',
                 child: Row(
                   children: [
@@ -91,6 +107,33 @@ class _MyWidgetState extends State<CardVocab> {
                 ),
               ),
               PopupMenuItem(
+                onTap: () {
+                  showCupertinoDialog(
+                    context: context,
+                    builder: (context) {
+                      return CupertinoAlertDialog(
+                        title: Text('Are you sure?'),
+                        actions: [
+                          CupertinoDialogAction(
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                            onPressed: () => Navigator.of(context).pop(),
+                          ),
+                          CupertinoDialogAction(
+                            isDestructiveAction: true,
+                            child: Text('Delete'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                              // ทำการลบข้อมูลที่นี่
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                },
                 value: 'delete',
                 child: Row(
                   children: [
@@ -102,8 +145,6 @@ class _MyWidgetState extends State<CardVocab> {
               ),
             ],
           ),
-
-          // IconButton(onPressed: () {}, icon: Icon(Icons.abc, size: 32)),
         ),
       ],
     );

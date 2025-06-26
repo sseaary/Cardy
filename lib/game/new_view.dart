@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class NewGame extends StatefulWidget {
-  const NewGame({super.key});
+  final String title;
+  const NewGame({super.key, required this.title});
 
   @override
   State<NewGame> createState() => _NewGameState();
@@ -13,63 +14,72 @@ class _NewGameState extends State<NewGame> {
     return Scaffold(
       backgroundColor: Color(0xFF0D243D),
       appBar: AppBar(
-        title: Text("level", style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+        ),
+        title: Text("${widget.title}", style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xFF0D243D),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(50.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                color: Colors.white,
-              ),
-              padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-              width: 300,
-              height: 400,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    "New",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF2E82DB),
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'New word',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        // borderSide: BorderSide(color: Colors.blueGrey),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white,
+                ),
+                padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                width: 330,
+                height: 400,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "New",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF2E82DB),
                       ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  Container(
-                    height: 100,
-                    width: 300,
-                    child: Icon(Icons.image),
-                    decoration: BoxDecoration(
-                      border: Border.all(),
-                      borderRadius: BorderRadius.circular(12),
+                    SizedBox(height: 20),
+                    TextField(
+                      decoration: InputDecoration(
+                        labelText: 'New word',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          // borderSide: BorderSide(color: Colors.blueGrey),
+                        ),
+                      ),
                     ),
-                  ),
-                  SizedBox(height: 20),
-                  TextField(
-                    maxLines: 4,
-                    decoration: InputDecoration(
-                      labelText: 'description',
-                      border: OutlineInputBorder(
+                    SizedBox(height: 20),
+                    Container(
+                      height: 100,
+                      width: 300,
+                      child: Icon(Icons.image),
+                      decoration: BoxDecoration(
+                        border: Border.all(),
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20),
+                    TextField(
+                      maxLines: 4,
+                      decoration: InputDecoration(
+                        labelText: 'description',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 30),
@@ -77,7 +87,9 @@ class _NewGameState extends State<NewGame> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     "cancel",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),

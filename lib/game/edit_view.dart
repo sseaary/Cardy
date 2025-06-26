@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class EditGame extends StatefulWidget {
-  const EditGame({super.key});
+  final String title;
+  const EditGame({super.key, required this.title});
 
   @override
   State<EditGame> createState() => _EditGameState();
@@ -13,7 +14,13 @@ class _EditGameState extends State<EditGame> {
     return Scaffold(
       backgroundColor: Color(0xFF0D243D),
       appBar: AppBar(
-        title: Text("level", style: TextStyle(color: Colors.white)),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+        ),
+        title: Text('${widget.title}', style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xFF0D243D),
       ),
       body: Padding(
@@ -26,7 +33,7 @@ class _EditGameState extends State<EditGame> {
                 color: Colors.white,
               ),
               padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
-              width: 300,
+              width: 330,
               height: 400,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -42,6 +49,7 @@ class _EditGameState extends State<EditGame> {
                   SizedBox(height: 20),
                   TextField(
                     decoration: InputDecoration(
+                      labelText: 'word',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         // borderSide: BorderSide(color: Colors.blueGrey),
@@ -75,7 +83,9 @@ class _EditGameState extends State<EditGame> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
                   child: Text(
                     "cancel",
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),

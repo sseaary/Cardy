@@ -63,11 +63,11 @@ class _NewGameState extends State<NewGame> {
                     Container(
                       height: 100,
                       width: 300,
-                      child: Icon(Icons.image),
                       decoration: BoxDecoration(
                         border: Border.all(),
                         borderRadius: BorderRadius.circular(12),
                       ),
+                      child: Icon(Icons.image),
                     ),
                     SizedBox(height: 20),
                     TextField(

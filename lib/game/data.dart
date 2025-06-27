@@ -5,6 +5,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "A1",
     "description": "ยอมรับ",
+    "default": "true",
     "image_url":
         "https://img.freepik.com/free-photo/handshake-3d-icon-with-check-mark_107791-15088.jpg?ga=GA1.1.2016744053.1750300996&semt=ais_hybrid&w=740",
   },
@@ -13,6 +14,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "เครื่องบิน",
+    "default": "true",
     "image_url":
         "https://media.istockphoto.com/id/481482846/th/%E0%B9%80%E0%B8%A7%E0%B8%84%E0%B9%80%E0%B8%95%E0%B8%AD%E0%B8%A3%E0%B9%8C/%E0%B9%80%E0%B8%84%E0%B8%A3%E0%B8%B7%E0%B9%88%E0%B8%AD%E0%B8%87%E0%B8%9A%E0%B8%B4%E0%B8%99%E0%B9%81%E0%B8%A5%E0%B8%B0%E0%B8%AA%E0%B8%99%E0%B8%B2%E0%B8%A1%E0%B8%9A%E0%B8%B4%E0%B8%99%E0%B9%81%E0%B8%9A%E0%B8%99%E0%B8%AD%E0%B8%AD%E0%B8%81%E0%B9%81%E0%B8%9A%E0%B8%9A%E0%B8%A0%E0%B8%B2%E0%B8%9E%E0%B8%9B%E0%B8%A3%E0%B8%B0%E0%B8%81%E0%B8%AD%E0%B8%9A%E0%B9%84%E0%B8%AD%E0%B8%84%E0%B8%AD%E0%B8%99%E0%B8%A7%E0%B8%B1%E0%B8%95%E0%B8%96%E0%B8%B8.jpg?s=612x612&w=0&k=20&c=Gfl-qmnikVIoaPBpvKL4sFOgf3Qhps4S1fZRedtZkUc=",
   },
@@ -21,6 +23,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "เข็มขัด",
+    "default": "true",
     "image_url":
         "https://www.montblanc.com/variants/images/9649229528603146/A/w2500.jpg",
   },
@@ -29,6 +32,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "A1",
     "description": "ยืม",
+    "default": "true",
     "image_url":
         "https://media.istockphoto.com/id/1370630944/vector/borrow-money-from-friend-debt-and-loan-incentive-or-bonus-payment-credit-or-lending-concept.jpg?s=612x612&w=0&k=20&c=-vyGjLFeBX0XOdE0qjzkwWEBTohdj0iocEZFC5NPbAM=",
   },
@@ -37,6 +41,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "เบาะ",
+    "default": "true",
     "image_url":
         "https://craftsmill.in/cdn/shop/files/Cover_1.jpg?v=1725622910",
   },
@@ -45,6 +50,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A1",
     "description": "ถูก",
+    "default": "true",
     "image_url":
         "https://st.depositphotos.com/1186248/4011/i/450/depositphotos_40112995-stock-photo-cheap.jpg",
   },
@@ -53,6 +59,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "ไดโนเสาร์",
+    "default": "true",
     "image_url":
         "https://static.wikia.nocookie.net/dino/images/e/ec/Jurassic_Park_Tyrannosaurus_Rex_%281%29.png/revision/latest/scale-to-width-down/1200?cb=20221117060622",
   },
@@ -61,6 +68,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A1",
     "description": "มืด",
+    "default": "true",
     "image_url":
         "https://cdn.readawrite.com/articles/2437/2436948/thumbnail/large.gif?1",
   },
@@ -69,6 +77,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "ซองจดหมาย",
+    "default": "true",
     "image_url":
         "https://clearbags.ca/media/catalog/product/cache/b981b4c57f8a5535d5b1d5104f55f528/E/1/E110-Premium-Vellum-Envelope-White-A6-1.jpg",
   },
@@ -77,6 +86,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "โลก",
+    "default": "true",
     "image_url":
         "https://img.freepik.com/premium-vector/drawing-globe-with-earth-it_1101854-1125.jpg",
   },
@@ -85,6 +95,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "หมอก",
+    "default": "true",
     "image_url":
         "https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/TreesInTheFog.jpg/960px-TreesInTheFog.jpg",
   },
@@ -93,6 +104,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "ขน",
+    "default": "true",
     "image_url": "https://cdn.langeek.co/photo/30896/original/?type=jpeg",
   },
   {
@@ -100,6 +112,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "ถุงมือ",
+    "default": "true",
     "image_url":
         "https://contents.mediadecathlon.com/p2611059/15fafe713aec8b98c416058d506f16a7/p2611059.jpg",
   },
@@ -108,6 +121,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "มกราคม",
+    "default": "true",
     "image_url":
         "https://tds-images.thedailystar.net/sites/default/files/styles/big_202/public/images/2025/01/01/how_the_month_of_january_got_its_name.jpg",
   },
@@ -116,6 +130,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A1",
     "description": "ใจดี",
+    "default": "true",
     "image_url":
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS2vo6jI5PuI6bYAigFe96oUw2ylxvHiVN5w&s",
   },
@@ -124,6 +139,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A1",
     "description": "ขี้เกียจ",
+    "default": "true",
     "image_url":
         "https://lead-academy.org/blog/wp-content/uploads/2022/10/stop-being-lazy.webp",
   },
@@ -132,6 +148,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "เดือน",
+    "default": "true",
     "image_url":
         "https://cdn.teachercreated.com/covers/900sqp/7490.jpg?v=20250123",
   },
@@ -140,6 +157,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A1",
     "description": "เงียบ",
+    "default": "true",
     "image_url":
         "https://www.thoughtco.com/thmb/NS_G122fCYbLWVdUlzQxKbVAizg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/getty_quiet-133677354-56afa2e45f9b58b7d01b55d0.jpg",
   },
@@ -148,6 +166,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "A1",
     "description": "ซ่อมแซม",
+    "default": "true",
     "image_url": "https://crni.ie/content/uploads/2022/05/1.png",
   },
   {
@@ -155,6 +174,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A1",
     "description": "คะแนน",
+    "default": "true",
     "image_url":
         "https://t3.ftcdn.net/jpg/02/48/64/86/360_F_248648605_bDmZX3y89a8ssD5E1dmjQ0IHaoIy6TDY.jpg",
   },
@@ -163,6 +183,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "นักแสดง",
+    "default": "true",
     "image_url":
         "https://static.stacker.com/s3fs-public/styles/slide_desktop/s3/02LD0JTY.png",
   },
@@ -171,6 +192,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "หญ้า",
+    "default": "true",
     "image_url":
         "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Closeup_of_lawn_grass.jpg/1200px-Closeup_of_lawn_grass.jpg",
   },
@@ -179,6 +201,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "A2",
     "description": "ฟัง",
+    "default": "true",
     "image_url":
         "https://dam.mediacorp.sg/image/upload/s--j0aU4S2i--/c_crop,h_924,w_1232,x_0,y_318/c_fill,g_auto,h_622,w_830/f_auto,q_auto/v1/mediacorp/cna/image/2021-08/istock-1266725568.jpg?itok=D4ZaQeLA",
   },
@@ -187,6 +210,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "การเชิญ",
+    "default": "true",
     "image_url": "https://m.media-amazon.com/images/I/71v+ursVVbL.jpg",
   },
   {
@@ -194,6 +218,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "A2",
     "description": "เข้าร่วม",
+    "default": "true",
     "image_url":
         "https://upload.wikimedia.org/wikipedia/commons/d/d2/Square_join.png",
   },
@@ -202,6 +227,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A2",
     "description": "ทันที",
+    "default": "true",
     "image_url": "https://ichef.bbc.co.uk/images/ic/976x549/p04t7vs3.jpg",
   },
   {
@@ -209,6 +235,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "โคมไฟ",
+    "default": "true",
     "image_url":
         "https://www.ikea.com/th/en/images/products/isnalen-led-work-lamp-white-brass-colour__1053570_pe857378_s5.jpg?f=s",
   },
@@ -217,6 +244,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "เครื่องจักร",
+    "default": "true",
     "image_url":
         "https://automationtechsupport.com/wp-content/uploads/2019/04/gears-1236578_960_720.jpg",
   },
@@ -225,6 +253,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "ตอนเช้า",
+    "default": "true",
     "image_url":
         "https://weddingreturngifts.com/blog/wp-content/uploads/2023/07/png_20230712_210610_0000.jpg",
   },
@@ -233,6 +262,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "นม",
+    "default": "true",
     "image_url":
         "https://www.cardiosmart.org/images/default-source/news-article-images/70545718.jpg?sfvrsn=b5c370e0_2",
   },
@@ -241,6 +271,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "หนังสือพิมพ์",
+    "default": "true",
     "image_url":
         "https://t4.ftcdn.net/jpg/06/15/39/73/360_F_615397357_nG7ZK98NnvHYPzJRMYLvMw2nazNNCPAO.jpg",
   },
@@ -249,6 +280,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A2",
     "description": "ซีด",
+    "default": "true",
     "image_url":
         "https://www.verywellhealth.com/thmb/0Kk6IkO0XauLmGpRSJkVaARZppg=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-957290072-a87825517d024fd1957ecb1539322da1.jpeg",
   },
@@ -257,6 +289,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "ช่างภาพ",
+    "default": "true",
     "image_url":
         "https://www.training.com.au/wp-content/uploads/Photographer.jpeg",
   },
@@ -265,6 +298,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "เหตุผล",
+    "default": "true",
     "image_url":
         "https://as2.ftcdn.net/jpg/04/72/67/35/1000_F_472673520_TcEf7qTUYYkhru5NB1IfRhTGToISEdyx.jpg",
   },
@@ -273,6 +307,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A2",
     "description": "รวย",
+    "default": "true",
     "image_url":
         "https://nypost.com/wp-content/uploads/sites/2/2019/03/get-rich-illustration-1a.jpg?quality=75&strip=all",
   },
@@ -281,6 +316,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "กระต่าย",
+    "default": "true",
     "image_url":
         "https://upload.wikimedia.org/wikipedia/commons/5/5b/Oryctolagus_cuniculus_Tasmania_2_%28cropped%29.jpg",
   },
@@ -289,6 +325,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "เสื้อ",
+    "default": "true",
     "image_url": "https://m.media-amazon.com/images/I/911n4nIhnpL._UY1000_.jpg",
   },
   {
@@ -296,6 +333,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A2",
     "description": "ช้า",
+    "default": "true",
     "image_url":
         "https://as2.ftcdn.net/jpg/00/60/98/45/1000_F_60984537_GHOb0r4zd0rum0gSVzHpHOpAN0aEvUo2.jpg",
   },
@@ -304,6 +342,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "A2",
     "description": "ย้ำแย่",
+    "default": "true",
     "image_url":
         "https://img.freepik.com/free-photo/girl-trouble-holds-hands-head-panicking-alarmed-young-woman-looking-anxious-worried-distressed-frustrated-with-big-problem-standing-against-white-background_176420-47774.jpg?semt=ais_hybrid&w=740",
   },
@@ -312,6 +351,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "A2",
     "description": "การสอบ",
+    "default": "true",
     "image_url":
         "https://admissions.rochester.edu/blog/wp-content/uploads/2015/08/test.png",
   },
@@ -320,6 +360,7 @@ List vocabJson = [
     "pos": "(adv.)",
     "level": "B1",
     "description": "ต่างประเทศ",
+    "default": "true",
     "image_url":
         "https://www.spsbangladesh.com/wp-content/uploads/2023/06/The-Ultimate-Guide-to-Studying-Abroad.jpg",
   },
@@ -328,6 +369,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B1",
     "description": "ไม่มา",
+    "default": "true",
     "image_url":
         "https://www.shutterstock.com/image-vector/absent-present-antonyms-word-card-260nw-1314001103.jpg",
   },
@@ -336,6 +378,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "อุบัติเหตุ",
+    "default": "true",
     "image_url":
         "https://www.dmlawusa.com/wp-content/uploads/2024/02/AdobeStock_571265185-scaled.jpeg",
   },
@@ -344,6 +387,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "B1",
     "description": "ความเชื่อ",
+    "default": "true",
     "image_url": "https://m.media-amazon.com/images/I/61J70VRI6mL.jpg",
   },
   {
@@ -351,6 +395,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "กีฬาเบสบอล",
+    "default": "true",
     "image_url": "https://pennathletics.com/images/2025/2/20/RZ9_8886.JPG",
   },
   {
@@ -358,6 +403,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "เลือด",
+    "default": "true",
     "image_url":
         "https://emerypharma.com/nitropack_static/jrlQBnCLuVpaptDVwNmSmkdmIbRrEVcg/assets/images/optimized/rev-227a724/emerypharma.com/wp-content/uploads/2019/03/Blood-blog-pic-1.jpg",
   },
@@ -366,6 +412,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "กะหล่ำปลี",
+    "default": "true",
     "image_url":
         "https://www.veggovilla.com/img/productimg/cabbage_0_5-240.webp",
   },
@@ -374,6 +421,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "เทียน",
+    "default": "true",
     "image_url":
         "https://www.thecandledepot.com/cdn/shop/products/541-200_Flame_8443f79b-2663-4c8a-8a30-2ae0b44402f2_530x.jpg?v=1676406153",
   },
@@ -382,6 +430,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "B1",
     "description": "ปีน",
+    "default": "true",
     "image_url":
         "https://assets.simpleviewinc.com/simpleview/image/upload/c_fill,f_jpg,h_647,q_65,w_640/v1/clients/tucson-redesign/mountain_climber_cliff_rock4_312498f1-2c4e-4950-b0c0-733e574cbb4d.jpg",
   },
@@ -390,6 +439,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B1",
     "description": "อันตราย",
+    "default": "true",
     "image_url":
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLeiAHMFOBlzupjRwyGO88e0iT6hETZ8MUSQ&s",
   },
@@ -398,6 +448,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "พนักงาน",
+    "default": "true",
     "image_url":
         "https://www.exzyworkplaceplus.com/wp-content/uploads/2020/06/employee-experience-1.jpg",
   },
@@ -406,6 +457,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "B1",
     "description": "ไม่ธรรมดา",
+    "default": "true",
     "image_url":
         "https://images.radio.com/aiu-media/fancy2-6d4035d5-565b-46f3-bac4-c345c3644334.jpg",
   },
@@ -414,6 +466,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "น้ำพุ",
+    "default": "true",
     "image_url":
         "https://www.designingbuildings.co.uk/w/images/e/ee/Fountain.jpg",
   },
@@ -422,6 +475,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "หลาน",
+    "default": "true",
     "image_url":
         "https://www.focusonthefamily.com/wp-content/uploads/2023/08/handing-down-your-faith-to-your-grandchild-64e3decc7984c.webp",
   },
@@ -430,6 +484,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "เจ้าบ่าว",
+    "default": "true",
     "image_url":
         "https://media2.insideweddings.com/images/bc66b4053714ec69721251155415aec1.original.jpg",
   },
@@ -438,6 +493,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "ความสุข",
+    "default": "true",
     "image_url":
         "https://www.torrancememorial.org/app/files/public/2a384dc5-4073-457c-ba19-0a4647f6c91b/Content%20Hub/Self%20Care/happiness.png",
   },
@@ -446,6 +502,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B1",
     "description": "นักกีฬา",
+    "default": "true",
     "image_url":
         "https://static01.nyt.com/images/2019/11/18/opinion/16fleshman/16fleshman-superJumbo.jpg",
   },
@@ -454,6 +511,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B1",
     "description": "ทันสมัย",
+    "default": "true",
     "image_url":
         "https://www.jorakay.co.th/imgadmins/source/blog/01-modern-style-house.jpg?1620285687020",
   },
@@ -462,6 +520,7 @@ List vocabJson = [
     "pos": "(adv.)",
     "level": "B1",
     "description": "เป็นครั้งคราว",
+    "default": "true",
     "image_url": "https://i.ytimg.com/vi/irSaLzzJ7BY/maxresdefault.jpg",
   },
   {
@@ -469,6 +528,7 @@ List vocabJson = [
     "pos": "(pron.)",
     "level": "B1",
     "description": "ไม่มี",
+    "default": "true",
     "image_url":
         "https://garage76.com.au/cdn/shop/products/none-icon-1.gif?v=1674638507",
   },
@@ -477,6 +537,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "ความช่วยเหลือ",
+    "default": "true",
     "image_url":
         "https://e-solution.com/storage/component/24-10/7hGGphr1mHf5rHEcjE5ZbX0xalvFQwyrk5WmyGhe.png",
   },
@@ -485,6 +546,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "ลูกค้า",
+    "default": "true",
     "image_url":
         "https://flavorsampling.com/wp-content/uploads/2020/07/consumer-behaviour.jpg",
   },
@@ -493,6 +555,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "มวล",
+    "default": "true",
     "image_url":
         "https://doodlelearning.com/wp-content/uploads/2023/11/D2C-Website-Blogs-HowToMeasureMass-Scales@3x-1024x659.png",
   },
@@ -501,6 +564,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "สัญญา, ข้อตกลง",
+    "default": "true",
     "image_url":
         "https://www.blackdiamondnet.com/wp-content/uploads/2024/03/job-contract-photo-scaled.jpeg",
   },
@@ -509,6 +573,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "การทดแทน",
+    "default": "true",
     "image_url": "https://cdn-icons-png.flaticon.com/512/6487/6487722.png",
   },
   {
@@ -516,6 +581,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "B2",
     "description": "ห้าม",
+    "default": "true",
     "image_url":
         "https://media.istockphoto.com/id/1204457395/vector/no-sign-icon-red-crossed-circle-vector-design.jpg?s=612x612&w=0&k=20&c=ILlBzYpwT4nkXMTBG-sGK4zPwpSj_WaaHcM7zTB7lu4=",
   },
@@ -524,6 +590,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B2",
     "description": "น่าหลงใหล",
+    "default": "true",
     "image_url":
         "https://beyondphilosophy.b-cdn.net/wp-content/uploads/2016/09/Fascinating-Insight-How-You-Make-Decisions-Colin-Shaw-Featured-Image.jpg",
   },
@@ -532,6 +599,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B2",
     "description": "ผูกพัน",
+    "default": "true",
     "image_url":
         "https://thumbs.dreamstime.com/b/cartoon-tied-up-woman-isolated-55117271.jpg",
   },
@@ -540,6 +608,7 @@ List vocabJson = [
     "pos": "(adv.)",
     "level": "B2",
     "description": "เริ่มแรก",
+    "default": "true",
     "image_url": "https://cdn.langeek.co/photo/48995/original/?type=jpeg",
   },
   {
@@ -547,6 +616,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B2",
     "description": "น่ารื่นรมย์",
+    "default": "true",
     "image_url":
         "https://cdn.langeek.co/photo/17549/original/pleasant?type=jpeg",
   },
@@ -555,6 +625,7 @@ List vocabJson = [
     "pos": "(adj.)",
     "level": "B2",
     "description": "ประทับใจ",
+    "default": "true",
     "image_url":
         "https://media.istockphoto.com/id/1138637828/photo/surprised-amazing-woman-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=6LASo95A3CJ7BqtgHRvMEa2IIrDPy2onH-e-3B4D45k=",
   },
@@ -563,6 +634,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "การขาด",
+    "default": "true",
     "image_url":
         "https://i0.wp.com/cezannehr.com/wp-content/uploads/2012/10/Five-ways-to-strike-the-right-balance-with-absence-management.png?fit=5200%2C2925&ssl=1",
   },
@@ -571,6 +643,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "ความกังวล",
+    "default": "true",
     "image_url": "https://medlineplus.gov/images/AnxietyNew_Share.jpg",
   },
   {
@@ -578,6 +651,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "B2",
     "description": "แตก",
+    "default": "true",
     "image_url": "https://cdn.langeek.co/photo/27975/original/?type=jpeg",
   },
   {
@@ -585,6 +659,7 @@ List vocabJson = [
     "pos": "(v.)",
     "level": "B2",
     "description": "ซื้อ",
+    "default": "true",
     "image_url":
         "https://www.conversioner.com/wp-content/uploads/2014/09/Depositphotos_9472457_s.jpg",
   },
@@ -593,6 +668,7 @@ List vocabJson = [
     "pos": "(adv.)",
     "level": "B2",
     "description": "อย่างจริงใจ",
+    "default": "true",
     "image_url": "https://cdn.langeek.co/photo/19270/original/honest?type=jpeg",
   },
   {
@@ -600,6 +676,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "การเดินทาง",
+    "default": "true",
     "image_url":
         "https://as2.ftcdn.net/jpg/00/75/56/29/1000_F_75562915_h2wJuTBbRYypHdgNnKqU82eDiTAFQ4Gx.jpg",
   },
@@ -608,6 +685,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "ถิ่นที่อยู่",
+    "default": "true",
     "image_url": "https://cdn.langeek.co/photo/22694/original/?type=jpeg",
   },
   {
@@ -615,6 +693,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "สมาคม",
+    "default": "true",
     "image_url":
         "https://img.freepik.com/premium-vector/association-several-intertwined-multicolored-hands-flat-style_263753-2359.jpg?semt=ais_hybrid&w=740",
   },
@@ -623,6 +702,7 @@ List vocabJson = [
     "pos": "(n.)",
     "level": "B2",
     "description": "การเริ่มขึ้น, รุ่งอรุณ",
+    "default": "true",
     "image_url":
         "https://vrestrepo.com/wp-content/uploads/2024/06/VRestrepo_dawn_01-1024x683.jpg",
   },

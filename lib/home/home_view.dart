@@ -25,7 +25,6 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     newTitle = [...titleList] + [...userTitle];
-    print(newTitle);
   }
 
   @override
@@ -87,13 +86,10 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) =>
-              //         FavoriteView(vocabs: favoriteVocabs, title: widget.title),
-              //   ),
-              // );
+              Get.toNamed(
+                "/favoriteView",
+                // arguments: {"vocab": vocabJson, "title": 'title}'},
+              );
             },
             icon: Icon(Icons.favorite),
           ),
@@ -149,22 +145,13 @@ class _HomeState extends State<Home> {
                           .where((json) => json['level'] == title["title_name"])
                           .toList();
                       if (newVocabsFromLevel.isEmpty) {
-                        // newVocabsFromLevel = [
-                        //   {
-                        //     "words": "",
-                        //     "pos": "",
-                        //     "level": "",
-                        //     "description": "",
-                        //     "image_url": "",
-                        //   },
-                        // ];
                         Get.toNamed(
-                          "GameView",
+                          "/newGame",
                           arguments: {"title": '${title["title_name"]}'},
                         );
                       } else {
                         Get.toNamed(
-                          "GameView",
+                          "/gameView",
                           arguments: {
                             "vocabs": newVocabsFromLevel,
                             "title": '${title["title_name"]}',

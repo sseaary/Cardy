@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_cardy/game/edit_view.dart';
+import 'package:flutter_cardy/game/favorite_view.dart';
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/home/home_view.dart';
@@ -28,9 +29,10 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: "/", page: () => Home()),
         GetPage(name: "/login", page: () => Login()),
-        GetPage(name: "/GameView", page: () => GameView()),
-        GetPage(name: "/NewGame", page: () => NewGame()),
-        GetPage(name: "/EditGame", page: () => EditGame()),
+        GetPage(name: "/gameView", page: () => GameView()),
+        GetPage(name: "/newGame", page: () => NewGame()),
+        GetPage(name: "/editGame", page: () => EditGame()),
+        GetPage(name: "/favoriteView", page: () => FavoriteView()),
       ],
     );
   }

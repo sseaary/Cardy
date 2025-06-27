@@ -43,7 +43,7 @@ class _GameViewState extends State<GameView> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed("/NewGame", arguments: {"title": '${widget.title}'});
+              Get.toNamed("/newGame", arguments: {"title": '${widget.title}'});
             },
             icon: Icon(Icons.add, size: 40, color: Color(0xFF2E82DB)),
           ),

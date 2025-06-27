@@ -113,55 +113,190 @@ class _HomeState extends State<Home> {
               ),
             ),
           ),
-          SizedBox(height: 40),
+          SizedBox(height: 20),
           Expanded(
-            child: ListView.separated(
-              itemCount: newTitle.length,
-              itemBuilder: (context, index) {
-                final title = newTitle[index];
+            child: ListView(
+              children: [
+                ...titleList.map(
+                  (title) => Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 20,
+                    ),
+                    child: Container(
+                      height: 100,
+                      padding: EdgeInsets.all(16),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.white,
+                      ),
+                      child: ListTile(
+                        title: Text(
+                          'Level - ${title["title_name"]}',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
 
-                return Container(
-                  height: 100,
-                  padding: EdgeInsets.all(16),
-                  margin: EdgeInsets.symmetric(horizontal: 40),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    color: Colors.white,
-                  ),
-                  child: ListTile(
-                    title: Text(
-                      'Level - ${title["title_name"]}',
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                        subtitle: Text("cards: ${title["total"]}"),
+                        onTap: () {
+                          List newVocabsFromLevel = vocabJson
+                              .where(
+                                (json) => json['level'] == title["title_name"],
+                              )
+                              .toList();
+                          if (newVocabsFromLevel.isEmpty) {
+                            Get.toNamed(
+                              "/newGame",
+                              arguments: {"title": '${title["title_name"]}'},
+                            );
+                          } else {
+                            Get.toNamed(
+                              "/gameView",
+                              arguments: {
+                                "vocabs": newVocabsFromLevel,
+                                "title": '${title["title_name"]}',
+                              },
+                            );
+                          }
+                        },
                       ),
                     ),
-                    subtitle: Text("cards: ${title["total"]}"),
-                    onTap: () {
-                      List newVocabsFromLevel = vocabJson
-                          .where((json) => json['level'] == title["title_name"])
-                          .toList();
-                      if (newVocabsFromLevel.isEmpty) {
-                        Get.toNamed(
-                          "/newGame",
-                          arguments: {"title": '${title["title_name"]}'},
-                        );
-                      } else {
-                        Get.toNamed(
-                          "/gameView",
-                          arguments: {
-                            "vocabs": newVocabsFromLevel,
-                            "title": '${title["title_name"]}',
-                          },
-                        );
-                      }
-                    },
                   ),
-                );
-              },
-              separatorBuilder: (context, index) => SizedBox(height: 40),
+                ),
+                ...userTitle.asMap().entries.map((entry) {
+                  final index = entry.key;
+                  final title = entry.value;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 40,
+                      vertical: 20,
+                    ),
+                    child: Dismissible(
+                      key: UniqueKey(),
+                      direction: DismissDirection.endToStart,
+                      background: Container(
+                        color: Colors.red,
+                        alignment: Alignment.centerRight,
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: Icon(Icons.delete, color: Colors.white),
+                      ),
+                      onDismissed: (_) {
+                        setState(() {
+                          userTitle.removeAt(index);
+                        });
+                      },
+                      child: Container(
+                        height: 100,
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          color: Colors.white,
+                        ),
+                        child: ListTile(
+                          title: Text(
+                            'Level - ${title["title_name"]}',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          subtitle: Text("cards: ${title["total"]}"),
+                          onTap: () {
+                            List newVocabsFromLevel = vocabJson
+                                .where(
+                                  (json) =>
+                                      json['level'] == title["title_name"],
+                                )
+                                .toList();
+                            if (newVocabsFromLevel.isEmpty) {
+                              Get.toNamed(
+                                "/newGame",
+                                arguments: {"title": '${title["title_name"]}'},
+                              );
+                            } else {
+                              Get.toNamed(
+                                "/gameView",
+                                arguments: {
+                                  "vocabs": newVocabsFromLevel,
+                                  "title": '${title["title_name"]}',
+                                },
+                              );
+                            }
+                          },
+                        ),
+                      ),
+                    ),
+                  );
+                }),
+              ],
             ),
           ),
+
+          // Expanded(
+          //   child: ListView.separated(
+          //     itemCount: newTitle.length,
+          //     itemBuilder: (context, index) {
+          //       final title = newTitle[index];
+
+          //       return Dismissible(
+          //         key: UniqueKey(),
+          //         direction: DismissDirection.endToStart,
+          //         background: Container(
+          //           color: Colors.red,
+          //           child: Icon(Icons.delete, color: Colors.white),
+          //         ),
+          //         onDismissed: (direction) {
+          //           setState(() {
+          //             newTitle.removeAt(index);
+          //           });
+          //         },
+          //         child: Container(
+          //           height: 100,
+          //           padding: EdgeInsets.all(16),
+          //           margin: EdgeInsets.symmetric(horizontal: 40),
+          //           decoration: BoxDecoration(
+          //             borderRadius: BorderRadius.circular(12),
+          //             color: Colors.white,
+          //           ),
+          //           child: ListTile(
+          //             title: Text(
+          //               'Level - ${title["title_name"]}',
+          //               style: TextStyle(
+          //                 color: Colors.black,
+          //                 fontWeight: FontWeight.bold,
+          //               ),
+          //             ),
+          //             subtitle: Text("cards: ${title["total"]}"),
+          //             onTap: () {
+          //               List newVocabsFromLevel = vocabJson
+          //                   .where(
+          //                     (json) => json['level'] == title["title_name"],
+          //                   )
+          //                   .toList();
+          //               if (newVocabsFromLevel.isEmpty) {
+          //                 Get.toNamed(
+          //                   "/newGame",
+          //                   arguments: {"title": '${title["title_name"]}'},
+          //                 );
+          //               } else {
+          //                 Get.toNamed(
+          //                   "/gameView",
+          //                   arguments: {
+          //                     "vocabs": newVocabsFromLevel,
+          //                     "title": '${title["title_name"]}',
+          //                   },
+          //                 );
+          //               }
+          //             },
+          //           ),
+          //         ),
+          //       );
+          //     },
+          //     separatorBuilder: (context, index) => SizedBox(height: 40),
+          //   ),
+          // ),
         ],
       ),
       floatingActionButton: FloatingActionButton(

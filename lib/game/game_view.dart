@@ -60,13 +60,9 @@ class _GameViewState extends State<GameView> {
       ),
       body: Column(
         children: [
-          // Padding(
-          //   padding: const EdgeInsets.all(8.0),
-          //   child: SizedBox(width: double.infinity),
-          // ),
           Expanded(
             child: Padding(
-              padding: const EdgeInsets.all(22.0),
+              padding: const EdgeInsets.all(40.0),
               child: PageView.builder(
                 controller: seaController,
                 onPageChanged: (value) {
@@ -93,7 +89,7 @@ class _GameViewState extends State<GameView> {
             ),
           ),
 
-          SizedBox(height: 80),
+          SizedBox(height: 20),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
@@ -106,7 +102,7 @@ class _GameViewState extends State<GameView> {
                   setState(() {});
                   seaController.animateToPage(
                     index,
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(milliseconds: 200),
                     curve: Curves.linear,
                   );
                 },
@@ -123,7 +119,7 @@ class _GameViewState extends State<GameView> {
                   setState(() {});
                   seaController.animateToPage(
                     index,
-                    duration: Duration(milliseconds: 500),
+                    duration: Duration(milliseconds: 200),
                     curve: Curves.linear,
                   );
                 },

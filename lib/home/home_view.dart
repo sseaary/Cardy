@@ -86,10 +86,7 @@ class _HomeState extends State<Home> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed(
-                "/favoriteView",
-                // arguments: {"vocab": vocabJson, "title": 'title}'},
-              );
+              Get.toNamed("/favoriteView");
             },
             icon: Icon(Icons.favorite),
           ),

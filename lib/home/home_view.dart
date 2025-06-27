@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_cardy/game/data.dart';
+import 'package:flutter_cardy/game/favorite_view.dart';
 import 'package:flutter_cardy/game/game_view.dart';
+import 'package:flutter_cardy/game/new_view.dart';
+import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -10,11 +13,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  List newTitle = [];
+  List userTitle = [
+    {"title_name": "User card", "total": 20},
+    {"title_name": "User card", "total": 20},
+    {"title_name": "User card", "total": 20},
+    {"title_name": "User card", "total": 20},
+  ];
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    newTitle = [...titleList] + [...userTitle];
+    print(newTitle);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFF0D243D),
       drawer: Drawer(
+        width: 250,
         backgroundColor: Color(0xFFE5ECF1),
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -65,6 +84,20 @@ class _HomeState extends State<Home> {
         backgroundColor: Color(0xFF0D243D),
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) =>
+              //         FavoriteView(vocabs: favoriteVocabs, title: widget.title),
+              //   ),
+              // );
+            },
+            icon: Icon(Icons.favorite),
+          ),
+        ],
       ),
       body: Column(
         children: [
@@ -90,9 +123,9 @@ class _HomeState extends State<Home> {
           SizedBox(height: 40),
           Expanded(
             child: ListView.separated(
-              itemCount: titleList.length,
+              itemCount: newTitle.length,
               itemBuilder: (context, index) {
-                final title = titleList[index];
+                final title = newTitle[index];
 
                 return Container(
                   height: 100,
@@ -115,17 +148,29 @@ class _HomeState extends State<Home> {
                       List newVocabsFromLevel = vocabJson
                           .where((json) => json['level'] == title["title_name"])
                           .toList();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return GameView(
-                              vocabs: newVocabsFromLevel,
-                              title: '${title["title_name"]}',
-                            );
+                      if (newVocabsFromLevel.isEmpty) {
+                        // newVocabsFromLevel = [
+                        //   {
+                        //     "words": "",
+                        //     "pos": "",
+                        //     "level": "",
+                        //     "description": "",
+                        //     "image_url": "",
+                        //   },
+                        // ];
+                        Get.toNamed(
+                          "GameView",
+                          arguments: {"title": '${title["title_name"]}'},
+                        );
+                      } else {
+                        Get.toNamed(
+                          "GameView",
+                          arguments: {
+                            "vocabs": newVocabsFromLevel,
+                            "title": '${title["title_name"]}',
                           },
-                        ),
-                      );
+                        );
+                      }
                     },
                   ),
                 );

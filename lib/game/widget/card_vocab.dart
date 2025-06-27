@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cardy/game/edit_view.dart';
+import 'package:get/get.dart';
 
 class CardVocab extends StatefulWidget {
   final Map vocab;
@@ -48,7 +49,13 @@ class _MyWidgetState extends State<CardVocab> {
             text,
             style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
           ),
-          Expanded(child: Image.network(url, fit: BoxFit.cover)),
+          Expanded(
+            child: Image.network(
+              url,
+              fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+            ),
+          ),
         ],
       ),
     );
@@ -90,11 +97,9 @@ class _MyWidgetState extends State<CardVocab> {
             itemBuilder: (context) => [
               PopupMenuItem(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EditGame(title: '${widget.title}'),
-                    ),
+                  Get.toNamed(
+                    "EditGame",
+                    arguments: {"title": '${widget.title}'},
                   );
                 },
                 value: 'edit',
@@ -119,13 +124,13 @@ class _MyWidgetState extends State<CardVocab> {
                               'Cancel',
                               style: TextStyle(color: Colors.black),
                             ),
-                            onPressed: () => Navigator.of(context).pop(),
+                            onPressed: () => Get.back(),
                           ),
                           CupertinoDialogAction(
                             isDestructiveAction: true,
                             child: Text('Delete'),
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              Get.back();
                               // ทำการลบข้อมูลที่นี่
                             },
                           ),

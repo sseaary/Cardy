@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class EditGame extends StatefulWidget {
-  final String title;
-  const EditGame({super.key, required this.title});
+  final String title = Get.arguments["title"];
+  EditGame({super.key});
 
   @override
   State<EditGame> createState() => _EditGameState();
@@ -16,7 +17,7 @@ class _EditGameState extends State<EditGame> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
@@ -60,11 +61,11 @@ class _EditGameState extends State<EditGame> {
                   Container(
                     height: 100,
                     width: 300,
-                    child: Icon(Icons.image),
                     decoration: BoxDecoration(
                       border: Border.all(),
                       borderRadius: BorderRadius.circular(12),
                     ),
+                    child: Icon(Icons.image),
                   ),
                   SizedBox(height: 20),
                   TextField(
@@ -84,12 +85,8 @@ class _EditGameState extends State<EditGame> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
-                  child: Text(
-                    "cancel",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFE53935),
                     foregroundColor: Colors.white,
@@ -97,10 +94,21 @@ class _EditGameState extends State<EditGame> {
                       borderRadius: BorderRadiusGeometry.circular(8),
                     ),
                   ),
+                  child: Text(
+                    "cancel",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                 ),
                 SizedBox(width: 60),
                 ElevatedButton(
                   onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF4CAF50),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(8),
+                    ),
+                  ),
                   child: SizedBox(
                     width: 40,
                     child: Center(
@@ -111,13 +119,6 @@ class _EditGameState extends State<EditGame> {
                           fontSize: 16,
                         ),
                       ),
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF4CAF50),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(8),
                     ),
                   ),
                 ),

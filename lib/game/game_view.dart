@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_cardy/game/data.dart';
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
+import 'package:get/get.dart';
+import 'favorite_view.dart';
 
 class GameView extends StatefulWidget {
-  final String title;
-  final List vocabs;
-  const GameView({super.key, required this.vocabs, required this.title});
+  final String title = Get.arguments["title"];
+  final List vocabs = Get.arguments["vocabs"];
+  GameView({super.key});
 
   @override
   State<GameView> createState() => _GameViewState();
@@ -32,7 +34,7 @@ class _GameViewState extends State<GameView> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
@@ -41,11 +43,7 @@ class _GameViewState extends State<GameView> {
         actions: [
           IconButton(
             onPressed: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => NewGame(title: '${widget.title}'),
-                ),
-              );
+              Get.toNamed("/NewGame", arguments: {"title": '${widget.title}'});
             },
             icon: Icon(Icons.add, size: 40, color: Color(0xFF2E82DB)),
           ),

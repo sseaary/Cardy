@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewGame extends StatefulWidget {
-  final String title;
-  const NewGame({super.key, required this.title});
+  final String title = Get.arguments["title"];
+  NewGame({super.key});
 
   @override
   State<NewGame> createState() => _NewGameState();
@@ -16,7 +17,7 @@ class _NewGameState extends State<NewGame> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pop();
+            Get.back();
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
@@ -88,12 +89,8 @@ class _NewGameState extends State<NewGame> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Get.back();
                   },
-                  child: Text(
-                    "cancel",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFFE53935),
                     foregroundColor: Colors.white,
@@ -101,10 +98,21 @@ class _NewGameState extends State<NewGame> {
                       borderRadius: BorderRadiusGeometry.circular(8),
                     ),
                   ),
+                  child: Text(
+                    "cancel",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  ),
                 ),
                 SizedBox(width: 60),
                 ElevatedButton(
                   onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF4CAF50),
+                    foregroundColor: Colors.white,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadiusGeometry.circular(8),
+                    ),
+                  ),
                   child: SizedBox(
                     width: 40,
                     child: Center(
@@ -115,13 +123,6 @@ class _NewGameState extends State<NewGame> {
                           fontSize: 16,
                         ),
                       ),
-                    ),
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF4CAF50),
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadiusGeometry.circular(8),
                     ),
                   ),
                 ),

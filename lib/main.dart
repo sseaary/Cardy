@@ -6,6 +6,7 @@ import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/home/home_view.dart';
 import 'package:flutter_cardy/auth/login_view.dart';
 import 'package:flutter_cardy/auth/register_view.dart';
+import 'package:get/get.dart';
 
 void main() async {
   // Code ไว้เชื่อม firebase
@@ -18,18 +19,19 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-
-      // home: EditGame(),
-      // home: NewGame(),
-      // home: GameView(),
-      home: Home(),
-      // home: Login(),
-      // home: Register(),
+      initialRoute: "/",
+      getPages: [
+        GetPage(name: "/", page: () => Home()),
+        GetPage(name: "/login", page: () => Login()),
+        GetPage(name: "/GameView", page: () => GameView()),
+        GetPage(name: "/NewGame", page: () => NewGame()),
+        GetPage(name: "/EditGame", page: () => EditGame()),
+      ],
     );
   }
 }

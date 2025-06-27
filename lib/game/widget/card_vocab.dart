@@ -41,8 +41,8 @@ class _MyWidgetState extends State<CardVocab> {
 
   Container cardOff(Size size, String text, String url) {
     return Container(
-      height: size.width - 78,
-      width: size.width - 78,
+      // height: size.width - 78,
+      // width: size.width - 78,
       padding: EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -70,8 +70,8 @@ class _MyWidgetState extends State<CardVocab> {
     return Stack(
       children: [
         Container(
-          height: size.width - 78,
-          width: size.width - 78,
+          // height: size.width - 78,
+          // width: size.width - 78,
           padding: EdgeInsets.all(18),
           decoration: BoxDecoration(
             color: Color.fromRGBO(143, 217, 255, 1),

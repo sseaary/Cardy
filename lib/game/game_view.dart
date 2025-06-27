@@ -19,12 +19,21 @@ class _GameViewState extends State<GameView> {
   int index = 0;
   bool isFavorite = false;
   late List<bool> favoriteStatus;
+  late PageController seaController;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     favoriteStatus = List.filled(widget.vocabs.length, false);
+    seaController = PageController();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    seaController.dispose();
   }
 
   @override
@@ -51,21 +60,39 @@ class _GameViewState extends State<GameView> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: SizedBox(width: double.infinity),
-          ),
-          GestureDetector(
-            onTap: () {
-              isOn = !isOn;
-              setState(() {});
-            },
-            child: CardVocab(
-              vocab: widget.vocabs[index],
-              isOn: isOn,
-              title: '${widget.title}',
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: SizedBox(width: double.infinity),
+          // ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(22.0),
+              child: PageView.builder(
+                controller: seaController,
+                onPageChanged: (value) {
+                  setState(() {
+                    isOn = true;
+                  });
+                  index = value;
+                },
+                itemCount: widget.vocabs.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      isOn = !isOn;
+                      setState(() {});
+                    },
+                    child: CardVocab(
+                      vocab: widget.vocabs[index],
+                      isOn: isOn,
+                      title: '${widget.title}',
+                    ),
+                  );
+                },
+              ),
             ),
           ),
+
           SizedBox(height: 80),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -77,6 +104,11 @@ class _GameViewState extends State<GameView> {
                   isOn = true;
                   isFavorite = false;
                   setState(() {});
+                  seaController.animateToPage(
+                    index,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.linear,
+                  );
                 },
                 icon: Icon(Icons.arrow_back_ios_rounded),
                 iconSize: 40,
@@ -89,6 +121,11 @@ class _GameViewState extends State<GameView> {
                   isOn = true;
                   isFavorite = false;
                   setState(() {});
+                  seaController.animateToPage(
+                    index,
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.linear,
+                  );
                 },
                 icon: Icon(Icons.arrow_forward_ios_rounded),
                 iconSize: 40,

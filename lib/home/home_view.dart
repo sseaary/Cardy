@@ -1,8 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cardy/game/data.dart';
 import 'package:flutter_cardy/game/favorite_view.dart';
 import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/game/new_view.dart';
+import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
@@ -20,11 +22,19 @@ class _HomeState extends State<Home> {
     {"title_name": "User card", "total": 20},
     {"title_name": "User card", "total": 20},
   ];
+  String? userName;
+  String? userEmail;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     newTitle = [...titleList] + [...userTitle];
+
+    final user = FirebaseAuth.instance.currentUser;
+    setState(() {
+      userName = user?.displayName ?? 'Guest';
+      userEmail = user?.email ?? '';
+    });
   }
 
   @override
@@ -41,7 +51,7 @@ class _HomeState extends State<Home> {
             children: [
               SizedBox(height: 20),
               Text(
-                'Litaphat',
+                userName ?? '',
                 style: TextStyle(
                   color: Color(0xFF2E82DB),
                   fontSize: 18,
@@ -49,22 +59,13 @@ class _HomeState extends State<Home> {
                 ),
               ),
               SizedBox(height: 10),
-              Text(
-                'sea.panaporn@gmail.com',
-                style: TextStyle(color: Color(0xFF2E82DB)),
-              ),
+              Text(userEmail ?? '', style: TextStyle(color: Color(0xFF2E82DB))),
               Spacer(),
               ListTile(
-                leading: Icon(Icons.edit_note),
-                title: Text(
-                  "Theme",
-                  style: TextStyle(
-                    color: Color(0xFF2E82DB),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-              ListTile(
+                onTap: () {
+                  Storage().removeUserId();
+                  Get.offAllNamed('/');
+                },
                 leading: Icon(Icons.login_outlined),
                 title: Text(
                   "Log out",
@@ -404,8 +405,8 @@ class _HomeState extends State<Home> {
             },
           );
         },
-        child: Icon(Icons.add, color: Color(0xFF2E82DB), size: 30),
         shape: CircleBorder(),
+        child: Icon(Icons.add, color: Color(0xFF2E82DB), size: 30),
       ),
     );
   }

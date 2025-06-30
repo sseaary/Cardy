@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -122,6 +123,7 @@ class _RegisterState extends State<Register> {
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: TextField(
                 controller: _passwordController,
+                obscureText: true,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -172,7 +174,12 @@ class _RegisterState extends State<Register> {
                       fontSize: 16,
                       color: Colors.pink,
                       fontWeight: FontWeight.w300,
+                      decoration: TextDecoration.underline,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Get.toNamed("/");
+                      },
                   ),
                 ],
               ),

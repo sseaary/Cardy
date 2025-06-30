@@ -7,17 +7,21 @@ import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/home/home_view.dart';
 import 'package:flutter_cardy/auth/login_view.dart';
 import 'package:flutter_cardy/auth/register_view.dart';
+import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() async {
+main() async {
   // Code ไว้เชื่อม firebase
   WidgetsFlutterBinding.ensureInitialized();
+  await GetStorage.init();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -25,10 +29,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: "/",
+      initialRoute: Storage().islogin() ? "/home" : "/",
       getPages: [
-        GetPage(name: "/", page: () => Register()),
-        GetPage(name: "/login", page: () => Login()),
+        GetPage(name: "/", page: () => Login()),
+        GetPage(name: "/register", page: () => Register()),
         GetPage(name: "/home", page: () => Home()),
         GetPage(name: "/gameView", page: () => GameView()),
         GetPage(name: "/newGame", page: () => NewGame()),

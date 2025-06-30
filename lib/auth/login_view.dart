@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';
 
 class Login extends StatefulWidget {
@@ -12,6 +14,7 @@ class Login extends StatefulWidget {
 class _LoginState extends State<Login> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final storage = Storage();
 
   Future<void> loginUser() async {
     try {
@@ -20,11 +23,9 @@ class _LoginState extends State<Login> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-      print("Login successful");
 
       Get.toNamed("/home");
     } catch (e) {
-      print("Login failed: $e");
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Login failed: $e')));
@@ -57,7 +58,7 @@ class _LoginState extends State<Login> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                 child: Text(
-                  'Sign In',
+                  'Log In',
                   style: TextStyle(
                     fontSize: 32,
                     color: Colors.white,
@@ -104,7 +105,9 @@ class _LoginState extends State<Login> {
               width: 200,
               height: 48,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  loginUser();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF2E82DB),
                   foregroundColor: Colors.white,
@@ -136,7 +139,12 @@ class _LoginState extends State<Login> {
                       fontSize: 16,
                       color: Colors.pink,
                       fontWeight: FontWeight.w300,
+                      decoration: TextDecoration.underline,
                     ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = () {
+                        Get.toNamed("/register");
+                      },
                   ),
                 ],
               ),

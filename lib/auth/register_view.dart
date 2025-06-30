@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -8,6 +11,46 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  Future<void> registerUser() async {
+    try {
+      final auth = FirebaseAuth.instance;
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+
+      final user = userCredential.user;
+
+      if (user != null) {
+        final name = _nameController.text.trim();
+
+        // อัปเดตชื่อใน Firebase Auth
+        await user.updateDisplayName(name);
+        await user.reload();
+
+        // บันทึกลง Firestore
+        await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+          'uid': user.uid,
+          'name': name,
+          'email': user.email,
+          'createdAt': Timestamp.now(),
+        });
+
+        _nameController.clear();
+        _emailController.clear();
+        _passwordController.clear();
+
+        Get.snackbar("Success", "Registration successful");
+      }
+    } catch (e) {
+      Get.snackbar('Error', "$e", colorText: Colors.white);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +89,7 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: TextField(
+                controller: _nameController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -61,6 +105,7 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: TextField(
+                controller: _emailController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -76,6 +121,7 @@ class _RegisterState extends State<Register> {
             Padding(
               padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
               child: TextField(
+                controller: _passwordController,
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
@@ -92,7 +138,9 @@ class _RegisterState extends State<Register> {
               width: 200,
               height: 48,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  registerUser();
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF2E82DB),
                   foregroundColor: Colors.white,

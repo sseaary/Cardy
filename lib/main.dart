@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/",
       getPages: [
-        GetPage(name: "/", page: () => Home()),
+        GetPage(name: "/", page: () => Register()),
         GetPage(name: "/login", page: () => Login()),
+        GetPage(name: "/home", page: () => Home()),
         GetPage(name: "/gameView", page: () => GameView()),
         GetPage(name: "/newGame", page: () => NewGame()),
         GetPage(name: "/editGame", page: () => EditGame()),

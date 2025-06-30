@@ -176,9 +176,39 @@ class _HomeState extends State<Home> {
                     child: Dismissible(
                       key: UniqueKey(),
                       direction: DismissDirection.endToStart,
+                      confirmDismiss: (direction) async {
+                        bool confirm = false;
+                        await showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: Text("Confirm Delete"),
+                            content: Text(
+                              "Are you sure you want to delete this card?",
+                            ),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(false),
+                                child: Text("Cancel"),
+                              ),
+                              TextButton(
+                                onPressed: () {
+                                  confirm = true;
+                                  Navigator.of(context).pop(true);
+                                },
+                                child: Text(
+                                  "Delete",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                        return confirm;
+                      },
                       background: Container(
                         color: Colors.red,
-                        alignment: Alignment.centerRight,
+                        alignment: Alignment.center,
                         padding: EdgeInsets.symmetric(horizontal: 20),
                         child: Icon(Icons.delete, color: Colors.white),
                       ),

@@ -23,8 +23,8 @@ class _LoginState extends State<Login> {
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
-
-      Get.toNamed("/home");
+      storage.setUserId(auth.currentUser!.uid);
+      Get.offAllNamed("/home");
     } catch (e) {
       ScaffoldMessenger.of(
         context,

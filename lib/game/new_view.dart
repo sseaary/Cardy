@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/controller/upload_img.dart';
+import 'package:flutter_cardy/controller/upload_tofirestore.dart';
+import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -17,16 +20,6 @@ class _NewGameState extends State<NewGame> {
   final TextEditingController descriptionController = TextEditingController();
 
   File? _imageFile;
-  final ImagePicker _picker = ImagePicker();
-
-  Future<void> _pickImage() async {
-    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
-    if (pickedFile != null) {
-      setState(() {
-        _imageFile = File(pickedFile.path);
-      });
-    }
-  }
 
   @override
   void dispose() {
@@ -87,7 +80,12 @@ class _NewGameState extends State<NewGame> {
                     ),
                     SizedBox(height: 20),
                     GestureDetector(
-                      onTap: _pickImage,
+                      onTap: () async {
+                        final imgPath = await UploadImg().pickImage();
+                        setState(() {
+                          _imageFile = File(imgPath);
+                        });
+                      },
                       child: Container(
                         height: 100,
                         width: 300,
@@ -182,15 +180,23 @@ class _NewGameState extends State<NewGame> {
                 ),
                 SizedBox(width: 60),
                 ElevatedButton(
-                  onPressed: () {
-                    final newVocab = {
+                  onPressed: () async {
+                    final path = _imageFile?.path;
+                    final url = await UploadImg().uploadImage(path ?? "");
+                    final uploadData = {
                       "words": wordController.text,
+                      "level": widget.title,
                       "pos": "", // ถ้ามีประเภทคำ (noun, adj) ให้ใส่
                       "description": descriptionController.text,
-                      "image_url": _imageFile?.path ?? "", // รูปที่เลือก
+                      "image_url": url, // รูปที่เลือก
                       "default": "false",
                     };
-                    Get.back(result: newVocab);
+
+                    UploadTofirestore().upload(
+                      uploadData,
+                      Storage().getUserId(),
+                      widget.title,
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF4CAF50),

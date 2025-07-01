@@ -24,10 +24,12 @@ class _HomeState extends State<Home> {
   ];
   String? userName;
   String? userEmail;
+  late TextEditingController newTitleController;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    newTitleController = TextEditingController();
     newTitle = [...titleList] + [...userTitle];
 
     final user = FirebaseAuth.instance.currentUser;
@@ -35,6 +37,13 @@ class _HomeState extends State<Home> {
       userName = user?.displayName ?? 'Guest';
       userEmail = user?.email ?? '';
     });
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    newTitleController.dispose();
   }
 
   @override
@@ -264,70 +273,6 @@ class _HomeState extends State<Home> {
               ],
             ),
           ),
-
-          // Expanded(
-          //   child: ListView.separated(
-          //     itemCount: newTitle.length,
-          //     itemBuilder: (context, index) {
-          //       final title = newTitle[index];
-
-          //       return Dismissible(
-          //         key: UniqueKey(),
-          //         direction: DismissDirection.endToStart,
-          //         background: Container(
-          //           color: Colors.red,
-          //           child: Icon(Icons.delete, color: Colors.white),
-          //         ),
-          //         onDismissed: (direction) {
-          //           setState(() {
-          //             newTitle.removeAt(index);
-          //           });
-          //         },
-          //         child: Container(
-          //           height: 100,
-          //           padding: EdgeInsets.all(16),
-          //           margin: EdgeInsets.symmetric(horizontal: 40),
-          //           decoration: BoxDecoration(
-          //             borderRadius: BorderRadius.circular(12),
-          //             color: Colors.white,
-          //           ),
-          //           child: ListTile(
-          //             title: Text(
-          //               'Level - ${title["title_name"]}',
-          //               style: TextStyle(
-          //                 color: Colors.black,
-          //                 fontWeight: FontWeight.bold,
-          //               ),
-          //             ),
-          //             subtitle: Text("cards: ${title["total"]}"),
-          //             onTap: () {
-          //               List newVocabsFromLevel = vocabJson
-          //                   .where(
-          //                     (json) => json['level'] == title["title_name"],
-          //                   )
-          //                   .toList();
-          //               if (newVocabsFromLevel.isEmpty) {
-          //                 Get.toNamed(
-          //                   "/newGame",
-          //                   arguments: {"title": '${title["title_name"]}'},
-          //                 );
-          //               } else {
-          //                 Get.toNamed(
-          //                   "/gameView",
-          //                   arguments: {
-          //                     "vocabs": newVocabsFromLevel,
-          //                     "title": '${title["title_name"]}',
-          //                   },
-          //                 );
-          //               }
-          //             },
-          //           ),
-          //         ),
-          //       );
-          //     },
-          //     separatorBuilder: (context, index) => SizedBox(height: 40),
-          //   ),
-          // ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -368,6 +313,7 @@ class _HomeState extends State<Home> {
                       margin: EdgeInsets.symmetric(horizontal: 30),
 
                       child: TextField(
+                        controller: newTitleController,
                         decoration: InputDecoration(
                           labelText: 'Title',
                           border: OutlineInputBorder(
@@ -381,7 +327,14 @@ class _HomeState extends State<Home> {
                       width: 200,
                       height: 48,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          userTitle.add({
+                            "title_name": newTitleController.text,
+                            "total": 0,
+                          });
+                          Get.back();
+                          setState(() {});
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Color(0xFF2E82DB),
                           foregroundColor: Colors.white,

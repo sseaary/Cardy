@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +12,8 @@ class EditGame extends StatefulWidget {
 }
 
 class _EditGameState extends State<EditGame> {
+  File? _imageFile;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

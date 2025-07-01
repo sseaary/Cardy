@@ -97,6 +97,7 @@ class _LoginState extends State<Login> {
                 padding: const EdgeInsets.fromLTRB(30, 10, 30, 10),
                 child: TextField(
                   controller: _passwordController,
+                  obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -106,10 +107,11 @@ class _LoginState extends State<Login> {
                     ),
                     hintText: "password",
                   ),
+                  textInputAction: TextInputAction.next,
                 ),
               ),
               SizedBox(height: 60),
-              Container(
+              SizedBox(
                 width: 200,
                 height: 48,
                 child: ElevatedButton(

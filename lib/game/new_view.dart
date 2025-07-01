@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class NewGame extends StatefulWidget {
   final String title = Get.arguments["title"];
@@ -10,6 +13,29 @@ class NewGame extends StatefulWidget {
 }
 
 class _NewGameState extends State<NewGame> {
+  final TextEditingController wordController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
+
+  File? _imageFile;
+  final ImagePicker _picker = ImagePicker();
+
+  Future<void> _pickImage() async {
+    final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+    if (pickedFile != null) {
+      setState(() {
+        _imageFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    wordController.dispose();
+    descriptionController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,29 +77,80 @@ class _NewGameState extends State<NewGame> {
                     ),
                     SizedBox(height: 20),
                     TextField(
+                      controller: wordController,
                       decoration: InputDecoration(
                         labelText: 'New word',
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          // borderSide: BorderSide(color: Colors.blueGrey),
                         ),
                       ),
                     ),
                     SizedBox(height: 20),
-                    Container(
-                      height: 100,
-                      width: 300,
-                      decoration: BoxDecoration(
-                        border: Border.all(),
-                        borderRadius: BorderRadius.circular(12),
+                    GestureDetector(
+                      onTap: _pickImage,
+                      child: Container(
+                        height: 100,
+                        width: 300,
+                        decoration: BoxDecoration(
+                          border: Border.all(),
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: _imageFile != null
+                            ? Stack(
+                                children: [
+                                  Center(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: ClipRRect(
+                                        child: Image.file(
+                                          _imageFile!,
+                                          fit: BoxFit.contain,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Positioned(
+                                    top: 4,
+                                    right: 4,
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          _imageFile = null;
+                                        });
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.black.withOpacity(0.3),
+                                          shape: BoxShape.circle,
+                                        ),
+                                        padding: EdgeInsets.all(4),
+                                        child: Icon(
+                                          Icons.close,
+                                          color: Colors.white,
+                                          size: 16,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Center(
+                                child: Icon(
+                                  Icons.image,
+                                  size: 40,
+                                  color: Colors.grey,
+                                ),
+                              ),
                       ),
-                      child: Icon(Icons.image),
                     ),
                     SizedBox(height: 20),
                     TextField(
+                      controller: descriptionController,
                       maxLines: 4,
+                      textAlignVertical: TextAlignVertical.top,
                       decoration: InputDecoration(
                         labelText: 'description',
+                        alignLabelWithHint: true,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -105,7 +182,16 @@ class _NewGameState extends State<NewGame> {
                 ),
                 SizedBox(width: 60),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    final newVocab = {
+                      "words": wordController.text,
+                      "pos": "", // ถ้ามีประเภทคำ (noun, adj) ให้ใส่
+                      "description": descriptionController.text,
+                      "image_url": _imageFile?.path ?? "", // รูปที่เลือก
+                      "default": "false",
+                    };
+                    Get.back(result: newVocab);
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF4CAF50),
                     foregroundColor: Colors.white,

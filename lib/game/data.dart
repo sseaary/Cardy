@@ -3,7 +3,7 @@ List vocabJson = [
   {
     "words": "agree",
     "pos": "(v.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ยอมรับ",
     "default": "true",
     "image_url":
@@ -12,7 +12,7 @@ List vocabJson = [
   {
     "words": "airport",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "เครื่องบิน",
     "default": "true",
     "image_url":
@@ -21,7 +21,7 @@ List vocabJson = [
   {
     "words": "belt",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "เข็มขัด",
     "default": "true",
     "image_url":
@@ -30,7 +30,7 @@ List vocabJson = [
   {
     "words": "borrow",
     "pos": "(v.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ยืม",
     "default": "true",
     "image_url":
@@ -39,7 +39,7 @@ List vocabJson = [
   {
     "words": "cushion",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "เบาะ",
     "default": "true",
     "image_url":
@@ -48,7 +48,7 @@ List vocabJson = [
   {
     "words": "cheap",
     "pos": "(adj.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ถูก",
     "default": "true",
     "image_url":
@@ -57,7 +57,7 @@ List vocabJson = [
   {
     "words": "dinosaur",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ไดโนเสาร์",
     "default": "true",
     "image_url":
@@ -66,7 +66,7 @@ List vocabJson = [
   {
     "words": "dark",
     "pos": "(adj.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "มืด",
     "default": "true",
     "image_url":
@@ -75,7 +75,7 @@ List vocabJson = [
   {
     "words": "envelope",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ซองจดหมาย",
     "default": "true",
     "image_url":
@@ -84,7 +84,7 @@ List vocabJson = [
   {
     "words": "Earth",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "โลก",
     "default": "true",
     "image_url":
@@ -93,7 +93,7 @@ List vocabJson = [
   {
     "words": "fog",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "หมอก",
     "default": "true",
     "image_url":
@@ -102,7 +102,7 @@ List vocabJson = [
   {
     "words": "fur",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ขน",
     "default": "true",
     "image_url": "https://cdn.langeek.co/photo/30896/original/?type=jpeg",
@@ -110,7 +110,7 @@ List vocabJson = [
   {
     "words": "glove",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ถุงมือ",
     "default": "true",
     "image_url":
@@ -119,7 +119,7 @@ List vocabJson = [
   {
     "words": "January",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "มกราคม",
     "default": "true",
     "image_url":
@@ -128,7 +128,7 @@ List vocabJson = [
   {
     "words": "kind",
     "pos": "(adj.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ใจดี",
     "default": "true",
     "image_url":
@@ -137,7 +137,7 @@ List vocabJson = [
   {
     "words": "lazy",
     "pos": "(adj.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ขี้เกียจ",
     "default": "true",
     "image_url":
@@ -146,7 +146,7 @@ List vocabJson = [
   {
     "words": "month",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "เดือน",
     "default": "true",
     "image_url":
@@ -155,7 +155,7 @@ List vocabJson = [
   {
     "words": "quite",
     "pos": "(adj.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "เงียบ",
     "default": "true",
     "image_url":
@@ -164,7 +164,7 @@ List vocabJson = [
   {
     "words": "repair",
     "pos": "(v.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "ซ่อมแซม",
     "default": "true",
     "image_url": "https://crni.ie/content/uploads/2022/05/1.png",
@@ -172,7 +172,7 @@ List vocabJson = [
   {
     "words": "score",
     "pos": "(n.)",
-    "level": "Level - A1",
+    "level": "A1",
     "description": "คะแนน",
     "default": "true",
     "image_url":
@@ -181,7 +181,7 @@ List vocabJson = [
   {
     "words": "actor",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "นักแสดง",
     "default": "true",
     "image_url":
@@ -190,7 +190,7 @@ List vocabJson = [
   {
     "words": "grass",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "หญ้า",
     "default": "true",
     "image_url":
@@ -199,7 +199,7 @@ List vocabJson = [
   {
     "words": "hear",
     "pos": "(v.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ฟัง",
     "default": "true",
     "image_url":
@@ -208,7 +208,7 @@ List vocabJson = [
   {
     "words": "invitation",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "การเชิญ",
     "default": "true",
     "image_url": "https://m.media-amazon.com/images/I/71v+ursVVbL.jpg",
@@ -216,7 +216,7 @@ List vocabJson = [
   {
     "words": "join",
     "pos": "(v.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "เข้าร่วม",
     "default": "true",
     "image_url":
@@ -225,7 +225,7 @@ List vocabJson = [
   {
     "words": "immediately",
     "pos": "(adj.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ทันที",
     "default": "true",
     "image_url": "https://ichef.bbc.co.uk/images/ic/976x549/p04t7vs3.jpg",
@@ -233,7 +233,7 @@ List vocabJson = [
   {
     "words": "lamp",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "โคมไฟ",
     "default": "true",
     "image_url":
@@ -242,7 +242,7 @@ List vocabJson = [
   {
     "words": "machine",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "เครื่องจักร",
     "default": "true",
     "image_url":
@@ -251,7 +251,7 @@ List vocabJson = [
   {
     "words": "morning",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ตอนเช้า",
     "default": "true",
     "image_url":
@@ -260,7 +260,7 @@ List vocabJson = [
   {
     "words": "milk",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "นม",
     "default": "true",
     "image_url":
@@ -269,7 +269,7 @@ List vocabJson = [
   {
     "words": "newspaper",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "หนังสือพิมพ์",
     "default": "true",
     "image_url":
@@ -278,7 +278,7 @@ List vocabJson = [
   {
     "words": "pale",
     "pos": "(adj.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ซีด",
     "default": "true",
     "image_url":
@@ -287,7 +287,7 @@ List vocabJson = [
   {
     "words": "photographer",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ช่างภาพ",
     "default": "true",
     "image_url":
@@ -296,7 +296,7 @@ List vocabJson = [
   {
     "words": "reason",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "เหตุผล",
     "default": "true",
     "image_url":
@@ -305,7 +305,7 @@ List vocabJson = [
   {
     "words": "rich",
     "pos": "(adj.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "รวย",
     "default": "true",
     "image_url":
@@ -314,7 +314,7 @@ List vocabJson = [
   {
     "words": "rabbit",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "กระต่าย",
     "default": "true",
     "image_url":
@@ -323,7 +323,7 @@ List vocabJson = [
   {
     "words": "shirt",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "เสื้อ",
     "default": "true",
     "image_url": "https://m.media-amazon.com/images/I/911n4nIhnpL._UY1000_.jpg",
@@ -331,7 +331,7 @@ List vocabJson = [
   {
     "words": "slow",
     "pos": "(adj.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ช้า",
     "default": "true",
     "image_url":
@@ -340,7 +340,7 @@ List vocabJson = [
   {
     "words": "terrible",
     "pos": "(adj.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "ย้ำแย่",
     "default": "true",
     "image_url":
@@ -349,7 +349,7 @@ List vocabJson = [
   {
     "words": "test",
     "pos": "(n.)",
-    "level": "Level - A2",
+    "level": "A2",
     "description": "การสอบ",
     "default": "true",
     "image_url":
@@ -358,7 +358,7 @@ List vocabJson = [
   {
     "words": "abroad",
     "pos": "(adv.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ต่างประเทศ",
     "default": "true",
     "image_url":
@@ -367,7 +367,7 @@ List vocabJson = [
   {
     "words": "absent",
     "pos": "(adj.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ไม่มา",
     "default": "true",
     "image_url":
@@ -376,7 +376,7 @@ List vocabJson = [
   {
     "words": "accident",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "อุบัติเหตุ",
     "default": "true",
     "image_url":
@@ -385,7 +385,7 @@ List vocabJson = [
   {
     "words": "believe",
     "pos": "(v.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ความเชื่อ",
     "default": "true",
     "image_url": "https://m.media-amazon.com/images/I/61J70VRI6mL.jpg",
@@ -393,7 +393,7 @@ List vocabJson = [
   {
     "words": "baseball",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "กีฬาเบสบอล",
     "default": "true",
     "image_url": "https://pennathletics.com/images/2025/2/20/RZ9_8886.JPG",
@@ -401,7 +401,7 @@ List vocabJson = [
   {
     "words": "blood",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "เลือด",
     "default": "true",
     "image_url":
@@ -410,7 +410,7 @@ List vocabJson = [
   {
     "words": "cabbage",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "กะหล่ำปลี",
     "default": "true",
     "image_url":
@@ -419,7 +419,7 @@ List vocabJson = [
   {
     "words": "candle",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "เทียน",
     "default": "true",
     "image_url":
@@ -428,7 +428,7 @@ List vocabJson = [
   {
     "words": "climb",
     "pos": "(v.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ปีน",
     "default": "true",
     "image_url":
@@ -437,7 +437,7 @@ List vocabJson = [
   {
     "words": "dangerous",
     "pos": "(adj.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "อันตราย",
     "default": "true",
     "image_url":
@@ -446,7 +446,7 @@ List vocabJson = [
   {
     "words": "employee",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "พนักงาน",
     "default": "true",
     "image_url":
@@ -455,7 +455,7 @@ List vocabJson = [
   {
     "words": "fancy",
     "pos": "(v.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ไม่ธรรมดา",
     "default": "true",
     "image_url":
@@ -464,7 +464,7 @@ List vocabJson = [
   {
     "words": "fountain",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "น้ำพุ",
     "default": "true",
     "image_url":
@@ -473,7 +473,7 @@ List vocabJson = [
   {
     "words": "grandchild",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "หลาน",
     "default": "true",
     "image_url":
@@ -482,7 +482,7 @@ List vocabJson = [
   {
     "words": "groom",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "เจ้าบ่าว",
     "default": "true",
     "image_url":
@@ -491,7 +491,7 @@ List vocabJson = [
   {
     "words": "happiness",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ความสุข",
     "default": "true",
     "image_url":
@@ -500,7 +500,7 @@ List vocabJson = [
   {
     "words": "athlete",
     "pos": "(n.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "นักกีฬา",
     "default": "true",
     "image_url":
@@ -509,7 +509,7 @@ List vocabJson = [
   {
     "words": "modern",
     "pos": "(adj.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ทันสมัย",
     "default": "true",
     "image_url":
@@ -518,7 +518,7 @@ List vocabJson = [
   {
     "words": "occasionally",
     "pos": "(adv.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "เป็นครั้งคราว",
     "default": "true",
     "image_url": "https://i.ytimg.com/vi/irSaLzzJ7BY/maxresdefault.jpg",
@@ -526,7 +526,7 @@ List vocabJson = [
   {
     "words": "none",
     "pos": "(pron.)",
-    "level": "Level - B1",
+    "level": "B1",
     "description": "ไม่มี",
     "default": "true",
     "image_url":
@@ -535,7 +535,7 @@ List vocabJson = [
   {
     "words": "assistance",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ความช่วยเหลือ",
     "default": "true",
     "image_url":
@@ -544,7 +544,7 @@ List vocabJson = [
   {
     "words": "consumer",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ลูกค้า",
     "default": "true",
     "image_url":
@@ -553,7 +553,7 @@ List vocabJson = [
   {
     "words": "mass",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "มวล",
     "default": "true",
     "image_url":
@@ -562,7 +562,7 @@ List vocabJson = [
   {
     "words": "contract",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "สัญญา, ข้อตกลง",
     "default": "true",
     "image_url":
@@ -571,7 +571,7 @@ List vocabJson = [
   {
     "words": "replacement",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "การทดแทน",
     "default": "true",
     "image_url": "https://cdn-icons-png.flaticon.com/512/6487/6487722.png",
@@ -579,7 +579,7 @@ List vocabJson = [
   {
     "words": "prohibit",
     "pos": "(v.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ห้าม",
     "default": "true",
     "image_url":
@@ -588,7 +588,7 @@ List vocabJson = [
   {
     "words": "fascinating",
     "pos": "(adj.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "น่าหลงใหล",
     "default": "true",
     "image_url":
@@ -597,7 +597,7 @@ List vocabJson = [
   {
     "words": "bound",
     "pos": "(adj.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ผูกพัน",
     "default": "true",
     "image_url":
@@ -606,7 +606,7 @@ List vocabJson = [
   {
     "words": "initially",
     "pos": "(adv.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "เริ่มแรก",
     "default": "true",
     "image_url": "https://cdn.langeek.co/photo/48995/original/?type=jpeg",
@@ -614,7 +614,7 @@ List vocabJson = [
   {
     "words": "delightful",
     "pos": "(adj.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "น่ารื่นรมย์",
     "default": "true",
     "image_url":
@@ -623,7 +623,7 @@ List vocabJson = [
   {
     "words": "impressed",
     "pos": "(adj.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ประทับใจ",
     "default": "true",
     "image_url":
@@ -632,7 +632,7 @@ List vocabJson = [
   {
     "words": "absence",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "การขาด",
     "default": "true",
     "image_url":
@@ -641,7 +641,7 @@ List vocabJson = [
   {
     "words": "anxiety",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ความกังวล",
     "default": "true",
     "image_url": "https://medlineplus.gov/images/AnxietyNew_Share.jpg",
@@ -649,7 +649,7 @@ List vocabJson = [
   {
     "words": "crack",
     "pos": "(v.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "แตก",
     "default": "true",
     "image_url": "https://cdn.langeek.co/photo/27975/original/?type=jpeg",
@@ -657,7 +657,7 @@ List vocabJson = [
   {
     "words": "purchase",
     "pos": "(v.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ซื้อ",
     "default": "true",
     "image_url":
@@ -666,7 +666,7 @@ List vocabJson = [
   {
     "words": "truly",
     "pos": "(adv.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "อย่างจริงใจ",
     "default": "true",
     "image_url": "https://cdn.langeek.co/photo/19270/original/honest?type=jpeg",
@@ -674,7 +674,7 @@ List vocabJson = [
   {
     "words": "voyage",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "การเดินทาง",
     "default": "true",
     "image_url":
@@ -683,7 +683,7 @@ List vocabJson = [
   {
     "words": "resident",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "ถิ่นที่อยู่",
     "default": "true",
     "image_url": "https://cdn.langeek.co/photo/22694/original/?type=jpeg",
@@ -691,7 +691,7 @@ List vocabJson = [
   {
     "words": "association",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "สมาคม",
     "default": "true",
     "image_url":
@@ -700,7 +700,7 @@ List vocabJson = [
   {
     "words": "dawn",
     "pos": "(n.)",
-    "level": "Level - B2",
+    "level": "B2",
     "description": "การเริ่มขึ้น, รุ่งอรุณ",
     "default": "true",
     "image_url":

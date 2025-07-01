@@ -227,7 +227,7 @@ class _HomeState extends State<Home> {
                         ),
                         child: ListTile(
                           title: Text(
-                            'Level - ${title["title_name"]}',
+                            '${title["title_name"]}',
                             style: TextStyle(
                               color: Colors.black,
                               fontWeight: FontWeight.bold,

@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cardy/game/data.dart';
-import 'package:flutter_cardy/game/edit_view.dart';
 import 'package:get/get.dart';
 
 class CardVocab extends StatefulWidget {
@@ -22,7 +20,7 @@ class CardVocab extends StatefulWidget {
 
 class _MyWidgetState extends State<CardVocab> {
   void check() {
-    vocabJson.map((e) => e.contain(widget.vocab["word"]));
+    // vocabJson.map((e) => e.contain(widget.vocab["word"]));
   }
 
   @override

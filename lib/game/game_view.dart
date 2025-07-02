@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cardy/game/data.dart';
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
 import 'package:get/get.dart';

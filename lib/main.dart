@@ -4,11 +4,10 @@ import 'package:flutter_cardy/game/edit_view.dart';
 import 'package:flutter_cardy/game/favorite_view.dart';
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/game_view.dart';
-import 'package:flutter_cardy/getData_test.dart';
 import 'package:flutter_cardy/home/home_view.dart';
 import 'package:flutter_cardy/auth/login_view.dart';
 import 'package:flutter_cardy/auth/register_view.dart';
-import 'package:flutter_cardy/test_add.dart';
+
 import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -31,9 +30,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      // initialRoute: Storage().islogin() ? "/home" : "/",
+      initialRoute: Storage().islogin() ? "/home" : "/",
       // initialRoute: "/addVocabScreen",
-      initialRoute: "/vocabListFutureScreen",
+      // initialRoute: "/showVocabGroupScreen",
       getPages: [
         GetPage(name: "/", page: () => Login()),
         GetPage(name: "/register", page: () => Register()),
@@ -42,10 +41,14 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/newGame", page: () => NewGame()),
         GetPage(name: "/editGame", page: () => EditGame()),
         GetPage(name: "/favoriteView", page: () => FavoriteView()),
-        GetPage(
-          name: "/vocabListFutureScreen",
-          page: () => VocabListFutureScreen(),
-        ),
+        // GetPage(
+        //   name: "/showVocabGroupScreen",
+        //   page: () => ShowVocabGroupScreen(),
+        // ),
+        // GetPage(
+        //   name: "/vocabListFutureScreen",
+        //   page: () => VocabListFutureScreen(),
+        // ),
         // GetPage(name: "/addVocabScreen", page: () => AddVocabScreen()),
       ],
     );

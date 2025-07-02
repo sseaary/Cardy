@@ -7,6 +7,7 @@ import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/home/home_view.dart';
 import 'package:flutter_cardy/auth/login_view.dart';
 import 'package:flutter_cardy/auth/register_view.dart';
+import 'package:flutter_cardy/test_add.dart';
 
 import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: Storage().islogin() ? "/home" : "/",
       // initialRoute: "/addVocabScreen",
-      // initialRoute: "/showVocabGroupScreen",
+      // initialRoute: "/wordFormPage",
       getPages: [
         GetPage(name: "/", page: () => Login()),
         GetPage(name: "/register", page: () => Register()),
@@ -41,10 +42,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/newGame", page: () => NewGame()),
         GetPage(name: "/editGame", page: () => EditGame()),
         GetPage(name: "/favoriteView", page: () => FavoriteView()),
-        // GetPage(
-        //   name: "/showVocabGroupScreen",
-        //   page: () => ShowVocabGroupScreen(),
-        // ),
+
+        // GetPage(name: "/wordFormPage", page: () => WordFormPage()),
         // GetPage(
         //   name: "/vocabListFutureScreen",
         //   page: () => VocabListFutureScreen(),

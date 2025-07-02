@@ -12,7 +12,7 @@ class UploadImg {
     if (PickedFile != null) {
       return PickedFile.path;
     } else {
-      return "no image has picked";
+      return "";
     }
   }
 

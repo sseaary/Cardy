@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cardy/controller/upload_img.dart';
 import 'package:flutter_cardy/util/storage.dart';
-import 'package:get/get.dart';
 
 class NewGame extends StatefulWidget {
   final Map<String, dynamic>? wordData; // รับข้อมูลที่ใช้แก้ไข

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
 import 'package:get/get.dart';
-import 'favorite_view.dart';
 
 class GameView extends StatefulWidget {
   final String title = Get.arguments["title"];

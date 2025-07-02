@@ -6,7 +6,6 @@ import 'package:flutter_cardy/game/game_view.dart';
 import 'package:flutter_cardy/home/home_view.dart';
 import 'package:flutter_cardy/auth/login_view.dart';
 import 'package:flutter_cardy/auth/register_view.dart';
-import 'package:flutter_cardy/test_add.dart';
 
 import 'package:flutter_cardy/util/storage.dart';
 import 'package:get/get.dart';

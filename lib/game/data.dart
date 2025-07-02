@@ -1,4 +1,4 @@
-// collection vocabjson
+// collection vocab_admin
 List vocabJson = [
   {
     "words": "agree",

@@ -22,7 +22,6 @@ class _GameViewState extends State<GameView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     favoriteStatus = List.filled(widget.vocabs.length, false);
     seaController = PageController();
@@ -30,7 +29,6 @@ class _GameViewState extends State<GameView> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     seaController.dispose();
   }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,10 +20,6 @@ class CardVocab extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<CardVocab> {
-  void check() {
-    // vocabJson.map((e) => e.contain(widget.vocab["word"]));
-  }
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
@@ -39,8 +36,6 @@ class _MyWidgetState extends State<CardVocab> {
 
   Container cardOff(Size size, String text, String url) {
     return Container(
-      // height: size.width - 78,
-      // width: size.width - 78,
       padding: EdgeInsets.all(18),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -68,8 +63,6 @@ class _MyWidgetState extends State<CardVocab> {
     return Stack(
       children: [
         Container(
-          // height: size.width - 78,
-          // width: size.width - 78,
           padding: EdgeInsets.all(18),
           decoration: BoxDecoration(
             color: Color.fromRGBO(143, 217, 255, 1),
@@ -99,8 +92,11 @@ class _MyWidgetState extends State<CardVocab> {
                     PopupMenuItem(
                       onTap: () {
                         Get.toNamed(
-                          "/editGame",
-                          arguments: {"title": '${widget.title}'},
+                          "/newGame",
+                          arguments: {
+                            "docId": widget.vocab['id'],
+                            "wordData": widget.vocab,
+                          },
                         );
                       },
                       value: 'edit',
@@ -130,9 +126,25 @@ class _MyWidgetState extends State<CardVocab> {
                                 CupertinoDialogAction(
                                   isDestructiveAction: true,
                                   child: Text('Delete'),
-                                  onPressed: () {
-                                    Get.back();
-                                    // ทำการลบข้อมูลที่นี่
+                                  onPressed: () async {
+                                    Get.back(); // ปิด dialog ก่อน
+
+                                    final docId = widget.vocab['id'];
+                                    await FirebaseFirestore.instance
+                                        .collection('vocab_user')
+                                        .doc(docId)
+                                        .delete();
+                                    Get.back(result: 'deleted');
+
+                                    // Optional: แสดง SnackBar หรือ Toast
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        content: Text("Deleted successfully"),
+                                      ),
+                                    );
+
+                                    // Optional: กลับหน้าก่อนหรือรีเฟรชหน้าปัจจุบัน
+                                    // หรือถ้าคุณต้องให้ GameView โหลดใหม่ ให้ใช้ callback หรือ state management
                                   },
                                 ),
                               ],

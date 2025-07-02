@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter_cardy/game/edit_view.dart';
 import 'package:flutter_cardy/game/favorite_view.dart';
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/game_view.dart';
@@ -40,15 +39,22 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/home", page: () => Home()),
         GetPage(name: "/gameView", page: () => GameView()),
         GetPage(name: "/newGame", page: () => NewGame()),
-        GetPage(name: "/editGame", page: () => EditGame()),
         GetPage(name: "/favoriteView", page: () => FavoriteView()),
 
-        // GetPage(name: "/wordFormPage", page: () => WordFormPage()),
-        // GetPage(
-        //   name: "/vocabListFutureScreen",
-        //   page: () => VocabListFutureScreen(),
-        // ),
-        // GetPage(name: "/addVocabScreen", page: () => AddVocabScreen()),
+        GetPage(
+          name: "/wordFormPage",
+          page: () => WordFormPage(
+            docId: 'F2q8jheorvzlnFaTp3D6',
+            wordData: {
+              "words": "sss",
+              "level": "sea",
+              "description": "wwww",
+              "image_url":
+                  "https://res.cloudinary.com/dhzgzeoqe/image/upload/v1751446408/nojlrxhn2jkddktiyac0.jpg",
+              "created_by": "fUiMB47J9VczJz0rYHui0aWUFox1",
+            },
+          ),
+        ),
       ],
     );
   }

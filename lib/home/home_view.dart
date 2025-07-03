@@ -215,11 +215,16 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Padding _titleCard(title) {
+  Widget _titleCard(title) {
     List levelDefault = ['A1', 'A2', 'B1', 'B2'];
     bool isShow = levelDefault.contains('${title["title_name"]}');
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+      decoration: BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      clipBehavior: Clip.antiAlias,
       child: Slidable(
         key: ValueKey(title["title_name"]),
         enabled: !isShow, // ไม่ให้สไลด์ได้หากเป็น level default
@@ -239,10 +244,8 @@ class _HomeState extends State<Home> {
         child: Container(
           height: 100,
           padding: EdgeInsets.all(16),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(12),
-            color: Colors.white,
-          ),
+          color: Colors.white,
+
           child: ListTile(
             title: Text(
               isShow

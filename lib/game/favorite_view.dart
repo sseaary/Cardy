@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/widget/card_vocab.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 
 class FavoriteView extends StatefulWidget {
   const FavoriteView({super.key});
@@ -87,17 +89,72 @@ class _FavoriteViewState extends State<FavoriteView> {
                 itemCount: _savedVocabs.length,
                 itemBuilder: (context, i) {
                   final vocab = _savedVocabs[i];
-                  return Card(
-                    margin: EdgeInsets.symmetric(vertical: 8),
-                    child: ListTile(
-                      title: Text(
-                        vocab['words'] ?? '',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(vocab['description'] ?? ''),
-                      trailing: IconButton(
-                        icon: Icon(Icons.bookmark_remove, color: Colors.red),
-                        onPressed: () => _unSave(vocab['id']),
+                  return Slidable(
+                    key: ValueKey(vocab['id']),
+                    endActionPane: ActionPane(
+                      motion: ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (_) => _unSave(vocab['id']),
+                          backgroundColor: Colors.grey,
+                          foregroundColor: Colors.white,
+                          icon: Icons.bookmark,
+                          label: 'unsaved',
+                        ),
+                      ],
+                    ),
+                    child: GestureDetector(
+                      onTap: () {
+                        bool isOn = true;
+
+                        showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (context) {
+                            return Center(
+                              child: StatefulBuilder(
+                                builder: (context, setState) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 40.0,
+                                    ),
+
+                                    child: SizedBox(
+                                      height: 250,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isOn = !isOn;
+                                          });
+                                        },
+                                        child: CardVocab(
+                                          vocab: vocab,
+                                          isOn: isOn,
+                                          title: 'Saved',
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
+                            );
+                          },
+                        );
+                      },
+                      child: Card(
+                        // margin: EdgeInsets.symmetric(vertical: 8),
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              vocab['words'] ?? '',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
                   );

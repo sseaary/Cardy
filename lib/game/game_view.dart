@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
@@ -15,21 +17,58 @@ class GameView extends StatefulWidget {
 class _GameViewState extends State<GameView> {
   bool isOn = true;
   int index = 0;
-  bool isFavorite = false;
   late List<bool> favoriteStatus;
   late PageController seaController;
+  String uid = FirebaseAuth.instance.currentUser!.uid;
 
   @override
   void initState() {
     super.initState();
     favoriteStatus = List.filled(widget.vocabs.length, false);
     seaController = PageController();
+    _loadFavoriteStatus();
+  }
+
+  Future<void> _loadFavoriteStatus() async {
+    final userDoc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(uid)
+        .get();
+    List savedList = userDoc.data()?['Saved'] ?? [];
+
+    setState(() {
+      favoriteStatus = widget.vocabs.map((vocab) {
+        // vocab['id'] ควรมี id ของเอกสาร
+        return savedList.contains(vocab['id']);
+      }).toList();
+    });
+  }
+
+  Future<void> _toggleFavorite(int idx) async {
+    final docId = widget.vocabs[idx]['id'];
+    final userRef = FirebaseFirestore.instance.collection('users').doc(uid);
+
+    if (favoriteStatus[idx]) {
+      // ลบออก
+      await userRef.update({
+        'Saved': FieldValue.arrayRemove([docId]),
+      });
+    } else {
+      // เพิ่มเข้าไป
+      await userRef.update({
+        'Saved': FieldValue.arrayUnion([docId]),
+      });
+    }
+
+    setState(() {
+      favoriteStatus[idx] = !favoriteStatus[idx];
+    });
   }
 
   @override
   void dispose() {
-    super.dispose();
     seaController.dispose();
+    super.dispose();
   }
 
   @override
@@ -64,18 +103,19 @@ class _GameViewState extends State<GameView> {
                 onPageChanged: (value) {
                   setState(() {
                     isOn = true;
+                    index = value;
                   });
-                  index = value;
                 },
                 itemCount: widget.vocabs.length,
-                itemBuilder: (context, index) {
+                itemBuilder: (context, idx) {
                   return GestureDetector(
                     onTap: () {
-                      isOn = !isOn;
-                      setState(() {});
+                      setState(() {
+                        isOn = !isOn;
+                      });
                     },
                     child: CardVocab(
-                      vocab: widget.vocabs[index],
+                      vocab: widget.vocabs[idx],
                       isOn: isOn,
                       title: '${widget.title}',
                     ),
@@ -92,10 +132,10 @@ class _GameViewState extends State<GameView> {
               IconButton(
                 onPressed: () {
                   if ((index - 1) <= -1) return;
-                  index--;
-                  isOn = true;
-                  isFavorite = false;
-                  setState(() {});
+                  setState(() {
+                    index--;
+                    isOn = true;
+                  });
                   seaController.animateToPage(
                     index,
                     duration: Duration(milliseconds: 200),
@@ -109,10 +149,10 @@ class _GameViewState extends State<GameView> {
               IconButton(
                 onPressed: () {
                   if ((index + 1) >= widget.vocabs.length) return;
-                  index++;
-                  isOn = true;
-                  isFavorite = false;
-                  setState(() {});
+                  setState(() {
+                    index++;
+                    isOn = true;
+                  });
                   seaController.animateToPage(
                     index,
                     duration: Duration(milliseconds: 200),
@@ -129,17 +169,12 @@ class _GameViewState extends State<GameView> {
           SafeArea(
             minimum: const EdgeInsets.only(bottom: 20),
             child: IconButton(
-              onPressed: () {
-                setState(() {
-                  favoriteStatus[index] = !favoriteStatus[index];
-                });
-              },
+              onPressed: () => _toggleFavorite(index),
               icon: Icon(
                 favoriteStatus[index] ? Icons.favorite : Icons.favorite_border,
+                color: Colors.white,
+                size: 40,
               ),
-
-              iconSize: 40,
-              color: Colors.white,
             ),
           ),
         ],

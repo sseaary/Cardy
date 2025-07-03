@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/new_view.dart';
 import 'package:get/get.dart';
 
 class CardVocab extends StatefulWidget {
-  final Map vocab;
+  final Map<String, dynamic> vocab;
   final bool isOn;
   final String title;
 
@@ -91,12 +92,15 @@ class _MyWidgetState extends State<CardVocab> {
                   itemBuilder: (context) => [
                     PopupMenuItem(
                       onTap: () {
-                        Get.toNamed(
-                          "/newGame",
-                          arguments: {
-                            "docId": widget.vocab['id'],
-                            "wordData": widget.vocab,
-                          },
+                        print(
+                          "Sending to edit -> id: ${widget.vocab['id']}, wordData: ${widget.vocab}",
+                        );
+
+                        Get.to(
+                          () => NewGame(
+                            docId: widget.vocab['id'],
+                            wordData: widget.vocab,
+                          ),
                         );
                       },
                       value: 'edit',

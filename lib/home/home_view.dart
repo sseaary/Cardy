@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:collection/collection.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_cardy/util/storage.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:get/get.dart';
 
 class Home extends StatefulWidget {
@@ -21,6 +23,69 @@ class _HomeState extends State<Home> {
   String? userName;
   String? userEmail;
 
+  void _deleteCustomLevel(String levelName) async {
+    try {
+      // ลบจาก Firestore (เฉพาะ collection vocab_user)
+      final vocabUserCollection = FirebaseFirestore.instance.collection(
+        'vocab_user',
+      );
+      final snapshot = await vocabUserCollection
+          .where('level', isEqualTo: levelName)
+          .get();
+
+      for (var doc in snapshot.docs) {
+        await doc.reference.delete();
+      }
+
+      // ลบจากตัวแปรภายในแอป
+      items.removeWhere((item) => item['level'] == levelName);
+      title.removeWhere((t) => t['title_name'] == levelName);
+      _title.removeWhere((t) => t['title_name'] == levelName);
+
+      setState(() {});
+
+      Get.snackbar(
+        'Success',
+        'Deleted level "$levelName" from Firebase',
+        backgroundColor: Colors.green.shade600,
+        colorText: Colors.white,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to delete: $e',
+        backgroundColor: Colors.red.shade600,
+        colorText: Colors.white,
+      );
+    }
+  }
+
+  void confirmDeleteDialog(String levelName) {
+    showCupertinoDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return CupertinoAlertDialog(
+          title: Text("Are you sure"),
+
+          actions: [
+            CupertinoDialogAction(
+              child: Text("cancel"),
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            CupertinoDialogAction(
+              isDestructiveAction: true,
+              child: Text("Delete"),
+              onPressed: () {
+                Navigator.of(context).pop();
+                _deleteCustomLevel(levelName);
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   // ฟังก์ชันดึงข้อมูลจาก Firebase (แบบ Future)
   Future<List<Map<String, dynamic>>> fetchVocabList(
     String collectionPath,
@@ -29,7 +94,12 @@ class _HomeState extends State<Home> {
         .collection(collectionPath)
         .get();
 
-    return snapshot.docs.map((doc) => doc.data()).toList();
+    // return snapshot.docs.map((doc) => doc.data()).toList();
+    return snapshot.docs.map((doc) {
+      final data = doc.data();
+      data['id'] = doc.id;
+      return data;
+    }).toList();
   }
 
   Future<List<Map<String, dynamic>>> getVocabAdmin() {
@@ -150,34 +220,54 @@ class _HomeState extends State<Home> {
     bool isShow = levelDefault.contains('${title["title_name"]}');
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-      child: Container(
-        height: 100,
-        padding: EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          color: Colors.white,
+      child: Slidable(
+        key: ValueKey(title["title_name"]),
+        enabled: !isShow, // ไม่ให้สไลด์ได้หากเป็น level default
+        endActionPane: ActionPane(
+          motion: ScrollMotion(),
+          children: [
+            SlidableAction(
+              onPressed: (_) => confirmDeleteDialog(title["title_name"]),
+              backgroundColor: Colors.red,
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'Delete',
+            ),
+          ],
         ),
-        child: ListTile(
-          title: Text(
-            isShow
-                ? 'Level - ${title["title_name"]}'
-                : ' ${title["title_name"]}',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-          ),
 
-          subtitle: Text("cards: ${title["total"]}"),
-          onTap: () {
-            List newVocabsFromLevel = items
-                .where((json) => json['level'] == title["title_name"])
-                .toList();
-            Get.toNamed(
-              "/gameView",
-              arguments: {
-                "vocabs": newVocabsFromLevel,
-                "title": '${title["title_name"]}',
-              },
-            );
-          },
+        child: Container(
+          height: 100,
+          padding: EdgeInsets.all(16),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.white,
+          ),
+          child: ListTile(
+            title: Text(
+              isShow
+                  ? 'Level - ${title["title_name"]}'
+                  : ' ${title["title_name"]}',
+              style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+
+            subtitle: Text("cards: ${title["total"]}"),
+            onTap: () {
+              List newVocabsFromLevel = items
+                  .where((json) => json['level'] == title["title_name"])
+                  .toList();
+              Get.toNamed(
+                "/gameView",
+                arguments: {
+                  "vocabs": newVocabsFromLevel,
+                  "title": '${title["title_name"]}',
+                },
+              );
+            },
+          ),
         ),
       ),
     );

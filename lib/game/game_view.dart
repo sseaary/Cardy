@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +48,7 @@ class _GameViewState extends State<GameView> {
         actions: [
           IconButton(
             onPressed: () {
-              Get.toNamed("/newGame", arguments: {"title": '${widget.title}'});
+              Get.to(() => NewGame(initialTitle: widget.title));
             },
             icon: Icon(Icons.add, size: 40, color: Color(0xFF2E82DB)),
           ),

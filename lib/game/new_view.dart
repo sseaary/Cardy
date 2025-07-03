@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_cardy/controller/upload_img.dart';
 import 'package:flutter_cardy/util/storage.dart';
+import 'package:get/get.dart';
 
 class NewGame extends StatefulWidget {
   final Map<String, dynamic>? wordData; // รับข้อมูลที่ใช้แก้ไข
   final String? docId; // ใช้สำหรับอ้างอิงเอกสารเดิมตอนแก้ไข
+  final String? initialTitle; // เพิ่มตรงนี้
 
-  const NewGame({super.key, this.wordData, this.docId});
+  const NewGame({super.key, this.wordData, this.docId, this.initialTitle});
 
   @override
   State<NewGame> createState() => _NewGameState();
@@ -33,7 +35,11 @@ class _NewGameState extends State<NewGame> {
       _levelController.text = widget.wordData!['level'] ?? '';
       _descriptionController.text = widget.wordData!['description'] ?? '';
       imageUrl = widget.wordData!['image_url'] ?? '';
+    } else if (widget.initialTitle != null && widget.initialTitle!.isNotEmpty) {
+      _levelController.text = widget.initialTitle!;
     }
+
+    print("isEditMode: $isEditMode");
   }
 
   Future<void> _submitForm() async {
@@ -91,6 +97,12 @@ class _NewGameState extends State<NewGame> {
       child: Scaffold(
         backgroundColor: Color(0xFF0D243D),
         appBar: AppBar(
+          leading: IconButton(
+            onPressed: () {
+              Get.back();
+            },
+            icon: Icon(Icons.arrow_back, color: Colors.white),
+          ),
           title: Text(
             isEditMode ? "Edit Card" : "Add Card",
             style: TextStyle(color: Colors.white),

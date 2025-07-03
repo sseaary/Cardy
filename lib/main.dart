@@ -38,21 +38,6 @@ class MyApp extends StatelessWidget {
         GetPage(name: "/gameView", page: () => GameView()),
         GetPage(name: "/newGame", page: () => NewGame()),
         GetPage(name: "/favoriteView", page: () => FavoriteView()),
-
-        // GetPage(
-        //   name: "/wordFormPage",
-        //   page: () => WordFormPage(
-        //     docId: 'F2q8jheorvzlnFaTp3D6',
-        //     wordData: {
-        //       "words": "sss",
-        //       "level": "sea",
-        //       "description": "wwww",
-        //       "image_url":
-        //           "https://res.cloudinary.com/dhzgzeoqe/image/upload/v1751446408/nojlrxhn2jkddktiyac0.jpg",
-        //       "created_by": "fUiMB47J9VczJz0rYHui0aWUFox1",
-        //     },
-        // ),
-        // ),
       ],
     );
   }

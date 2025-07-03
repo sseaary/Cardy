@@ -38,8 +38,6 @@ class _NewGameState extends State<NewGame> {
     } else if (widget.initialTitle != null && widget.initialTitle!.isNotEmpty) {
       _levelController.text = widget.initialTitle!;
     }
-
-    print("isEditMode: $isEditMode");
   }
 
   Future<void> _submitForm() async {
@@ -72,7 +70,9 @@ class _NewGameState extends State<NewGame> {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context),
+              onPressed: () {
+                Navigator.pop(context);
+              },
               child: Text("OK"),
             ),
           ],

@@ -8,12 +8,14 @@ class CardVocab extends StatefulWidget {
   final Map<String, dynamic> vocab;
   final bool isOn;
   final String title;
+  final bool showMenu;
 
   const CardVocab({
     super.key,
     required this.vocab,
     required this.isOn,
     required this.title,
+    this.showMenu = true,
   });
 
   @override
@@ -80,8 +82,8 @@ class _MyWidgetState extends State<CardVocab> {
         Positioned(
           top: 8,
           right: 5,
-          child: widget.vocab["default"] == "true"
-              ? Text("")
+          child: (widget.vocab["default"] == "true" || widget.showMenu == false)
+              ? SizedBox.shrink()
               : PopupMenuButton<String>(
                   onSelected: (value) {
                     switch (value) {
@@ -92,10 +94,6 @@ class _MyWidgetState extends State<CardVocab> {
                   itemBuilder: (context) => [
                     PopupMenuItem(
                       onTap: () {
-                        print(
-                          "Sending to edit -> id: ${widget.vocab['id']}, wordData: ${widget.vocab}",
-                        );
-
                         Get.to(
                           () => NewGame(
                             docId: widget.vocab['id'],

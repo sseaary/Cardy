@@ -35,16 +35,37 @@ class _FavoriteViewState extends State<FavoriteView> {
     _savedIds = savedList;
 
     if (_savedIds.isNotEmpty) {
-      final qs = await FirebaseFirestore.instance
+      // แยก id ที่มีอยู่จริงในแต่ละ collection
+      // เพราะ query whereIn มีจำกัด 10 ids ต่อ query
+      // แต่สมมติในที่นี้ใส่เต็มเลยก่อน (แก้ไขทีหลังถ้ามาก)
+
+      // ดึง vocab_user
+      final qsUser = await FirebaseFirestore.instance
           .collection('vocab_user')
           .where(FieldPath.documentId, whereIn: _savedIds)
           .get();
 
-      _savedVocabs = qs.docs.map((doc) {
-        final data = doc.data();
-        data['id'] = doc.id;
-        return data;
-      }).toList();
+      // ดึง vocab_admin
+      final qsAdmin = await FirebaseFirestore.instance
+          .collection('vocab_admin')
+          .where(FieldPath.documentId, whereIn: _savedIds)
+          .get();
+
+      // รวมรายการ
+      _savedVocabs = [
+        ...qsUser.docs.map((doc) {
+          final data = doc.data();
+          data['id'] = doc.id;
+          data['source'] = 'vocab_user';
+          return data;
+        }),
+        ...qsAdmin.docs.map((doc) {
+          final data = doc.data();
+          data['id'] = doc.id;
+          data['source'] = 'vocab_admin';
+          return data;
+        }),
+      ];
     } else {
       _savedVocabs = [];
     }
@@ -131,6 +152,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                                           vocab: vocab,
                                           isOn: isOn,
                                           title: 'Saved',
+                                          showMenu: false,
                                         ),
                                       ),
                                     ),

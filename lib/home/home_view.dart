@@ -229,6 +229,8 @@ class _HomeState extends State<Home> {
         enabled: !isShow, // ไม่ให้สไลด์ได้หากเป็น level default
         endActionPane: ActionPane(
           motion: ScrollMotion(),
+          extentRatio: 0.30,
+
           children: [
             SlidableAction(
               onPressed: (_) => confirmDeleteDialog(title["title_name"]),

@@ -95,7 +95,7 @@ class _NewGameState extends State<NewGame> {
     _levelController.clear();
     _descriptionController.clear();
     imageUrl = '';
-    setState(() {});
+    Get.back();
   }
 
   @override

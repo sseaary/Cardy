@@ -24,7 +24,7 @@ class _NewGameState extends State<NewGame> {
 
   String imageUrl = "";
   bool isEditMode = false;
-
+  Map? newVocab;
   @override
   void initState() {
     super.initState();
@@ -56,9 +56,15 @@ class _NewGameState extends State<NewGame> {
             .collection('vocab_user')
             .doc(widget.docId)
             .update(formData);
+        newVocab = formData;
+        newVocab!['id'] = widget.docId;
       } else {
         // เพิ่มข้อมูลใหม่
-        await FirebaseFirestore.instance.collection('vocab_user').add(formData);
+        final response = await FirebaseFirestore.instance
+            .collection('vocab_user')
+            .add(formData);
+        newVocab = formData;
+        newVocab!['id'] = response.id;
       }
 
       showDialog(
@@ -71,7 +77,9 @@ class _NewGameState extends State<NewGame> {
           actions: [
             TextButton(
               onPressed: () {
+                print(newVocab);
                 Navigator.pop(context);
+                Get.back(result: newVocab);
               },
               child: Text("OK"),
             ),

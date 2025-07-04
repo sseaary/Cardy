@@ -2,7 +2,7 @@ name: flutter_cardy
 description: "A new Flutter project."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
@@ -52,17 +52,15 @@ flutter_launcher_icons:
 # dart run flutter_launcher_icons
 
 flutter_native_splash:
-  color: "#42a5f5"
+  color: "#2E82DB"
   image: "assets/icon/app_icon.png"
   android: true
   ios: false
   web: false
   android_12:
-    color: "#42a5f5"
+    color: "#2E82DB"
     image: "assets/icon/app_icon.png"
 # dart run flutter_native_splash:create
-
-
 
 dev_dependencies:
   flutter_test:
@@ -80,7 +78,6 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

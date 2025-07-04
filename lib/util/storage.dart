@@ -2,7 +2,6 @@ import 'package:get_storage/get_storage.dart';
 
 class Storage {
   final appStorage = GetStorage();
-
   // key
   String userKey = 'user_key';
 

@@ -5,12 +5,12 @@ import 'package:flutter_cardy/game/new_view.dart';
 import 'package:get/get.dart';
 
 class CardVocab extends StatefulWidget {
-  final Map<String, dynamic> vocab;
+  Map<String, dynamic> vocab;
   final bool isOn;
   final String title;
   final bool showMenu;
 
-  const CardVocab({
+  CardVocab({
     super.key,
     required this.vocab,
     required this.isOn,
@@ -28,7 +28,10 @@ class _MyWidgetState extends State<CardVocab> {
     Size size = MediaQuery.sizeOf(context);
     return SizedBox(
       child: widget.isOn
-          ? cardOn(size, "${widget.vocab['words']} ${widget.vocab['pos']}")
+          ? cardOn(
+              size,
+              "${widget.vocab['words']} ${widget.vocab['pos'] ?? ""}",
+            )
           : cardOff(
               size,
               "${widget.vocab['description']}",
@@ -93,13 +96,18 @@ class _MyWidgetState extends State<CardVocab> {
                   },
                   itemBuilder: (context) => [
                     PopupMenuItem(
-                      onTap: () {
-                        Get.to(
+                      onTap: () async {
+                        final newVocab = await Get.to(
                           () => NewGame(
                             docId: widget.vocab['id'],
                             wordData: widget.vocab,
                           ),
                         );
+                        if (newVocab != null) {
+                          setState(() {
+                            widget.vocab = newVocab;
+                          });
+                        }
                       },
                       value: 'edit',
                       child: Row(

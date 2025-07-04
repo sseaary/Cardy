@@ -257,17 +257,21 @@ class _HomeState extends State<Home> {
             ),
 
             subtitle: Text("cards: ${title["total"]}"),
-            onTap: () {
+            onTap: () async {
               List newVocabsFromLevel = items
                   .where((json) => json['level'] == title["title_name"])
                   .toList();
-              Get.toNamed(
+
+              final result = await Get.toNamed(
                 "/gameView",
                 arguments: {
                   "vocabs": newVocabsFromLevel,
                   "title": '${title["title_name"]}',
                 },
               );
+              if (result == true) {
+                await setItems();
+              }
             },
           ),
         ),

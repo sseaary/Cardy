@@ -1,13 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
 import 'package:get/get.dart';
 
 class GameView extends StatefulWidget {
-  final String title = Get.arguments["title"];
-  final List vocabs = Get.arguments["vocabs"];
   GameView({super.key});
 
   @override
@@ -15,16 +14,19 @@ class GameView extends StatefulWidget {
 }
 
 class _GameViewState extends State<GameView> {
+  final String title = Get.arguments["title"];
+  final List vocabs = Get.arguments["vocabs"];
   bool isOn = true;
   int index = 0;
   late List<bool> favoriteStatus;
   late PageController seaController;
   String uid = FirebaseAuth.instance.currentUser!.uid;
+  List fakeList = Get.arguments["vocabs"];
 
   @override
   void initState() {
     super.initState();
-    favoriteStatus = List.filled(widget.vocabs.length, false);
+    favoriteStatus = List.filled(fakeList.length, false);
     seaController = PageController();
     _loadFavoriteStatus();
   }
@@ -37,7 +39,7 @@ class _GameViewState extends State<GameView> {
     List savedList = userDoc.data()?['Saved'] ?? [];
 
     setState(() {
-      favoriteStatus = widget.vocabs.map((vocab) {
+      favoriteStatus = fakeList.map((vocab) {
         // vocab['id'] ควรมี id ของเอกสาร
         return savedList.contains(vocab['id']);
       }).toList();
@@ -45,7 +47,7 @@ class _GameViewState extends State<GameView> {
   }
 
   Future<void> _toggleFavorite(int idx) async {
-    final docId = widget.vocabs[idx]['id'];
+    final docId = fakeList[idx]['id'];
     final userRef = FirebaseFirestore.instance.collection('users').doc(uid);
 
     if (favoriteStatus[idx]) {
@@ -78,16 +80,23 @@ class _GameViewState extends State<GameView> {
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Get.back();
+            Get.back(result: true);
           },
           icon: Icon(Icons.arrow_back, color: Colors.white),
         ),
-        title: Text("${widget.title}", style: TextStyle(color: Colors.white)),
+        title: Text(title, style: TextStyle(color: Colors.white)),
         backgroundColor: Color(0xFF0D243D),
         actions: [
           IconButton(
-            onPressed: () {
-              Get.to(() => NewGame(initialTitle: widget.title));
+            onPressed: () async {
+              final newVocab = await Get.to(() => NewGame(initialTitle: title));
+
+              if (newVocab != null) {
+                setState(() {
+                  fakeList.add(newVocab);
+                  favoriteStatus.add(false);
+                });
+              }
             },
             icon: Icon(Icons.add, size: 40, color: Color(0xFF2E82DB)),
           ),
@@ -106,7 +115,7 @@ class _GameViewState extends State<GameView> {
                     index = value;
                   });
                 },
-                itemCount: widget.vocabs.length,
+                itemCount: fakeList.length,
                 itemBuilder: (context, idx) {
                   return GestureDetector(
                     onTap: () {
@@ -115,9 +124,9 @@ class _GameViewState extends State<GameView> {
                       });
                     },
                     child: CardVocab(
-                      vocab: widget.vocabs[idx],
+                      vocab: fakeList[idx],
                       isOn: isOn,
-                      title: '${widget.title}',
+                      title: title,
                     ),
                   );
                 },
@@ -148,7 +157,7 @@ class _GameViewState extends State<GameView> {
               ),
               IconButton(
                 onPressed: () {
-                  if ((index + 1) >= widget.vocabs.length) return;
+                  if ((index + 1) >= fakeList.length) return;
                   setState(() {
                     index++;
                     isOn = true;

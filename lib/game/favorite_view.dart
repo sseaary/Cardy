@@ -35,16 +35,23 @@ class _FavoriteViewState extends State<FavoriteView> {
     _savedIds = savedList;
 
     if (_savedIds.isNotEmpty) {
+      // แยก id ที่มีอยู่จริงในแต่ละ collection
+      // เพราะ query whereIn มีจำกัด 10 ids ต่อ query
+      // แต่สมมติในที่นี้ใส่เต็มเลยก่อน (แก้ไขทีหลังถ้ามาก)
+
+      // ดึง vocab_user
       final qsUser = await FirebaseFirestore.instance
           .collection('vocab_user')
           .where(FieldPath.documentId, whereIn: _savedIds)
           .get();
 
+      // ดึง vocab_admin
       final qsAdmin = await FirebaseFirestore.instance
           .collection('vocab_admin')
           .where(FieldPath.documentId, whereIn: _savedIds)
           .get();
 
+      // รวมรายการ
       _savedVocabs = [
         ...qsUser.docs.map((doc) {
           final data = doc.data();
@@ -74,23 +81,23 @@ class _FavoriteViewState extends State<FavoriteView> {
     await _loadSavedVocabs();
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(const SnackBar(content: Text('Removed from saved')));
+    ).showSnackBar(SnackBar(content: Text('Removed from saved')));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0D243D),
+      backgroundColor: Color(0xFF0D243D),
       appBar: AppBar(
-        title: const Text('Saved', style: TextStyle(color: Colors.white)),
+        title: Text('Saved', style: TextStyle(color: Colors.white)),
         centerTitle: true,
-        backgroundColor: const Color(0xFF0D243D),
-        iconTheme: const IconThemeData(color: Colors.white),
+        backgroundColor: Color(0xFF0D243D),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: Colors.white))
+          ? Center(child: CircularProgressIndicator(color: Colors.white))
           : _savedVocabs.isEmpty
-          ? const Center(
+          ? Center(
               child: Text(
                 'No saved items',
                 style: TextStyle(color: Colors.white),
@@ -99,88 +106,76 @@ class _FavoriteViewState extends State<FavoriteView> {
           : RefreshIndicator(
               onRefresh: _loadSavedVocabs,
               child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 16),
+                padding: EdgeInsets.all(16),
                 itemCount: _savedVocabs.length,
                 itemBuilder: (context, i) {
                   final vocab = _savedVocabs[i];
-
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 6,
+                  return Slidable(
+                    key: ValueKey(vocab['id']),
+                    endActionPane: ActionPane(
+                      motion: ScrollMotion(),
+                      children: [
+                        SlidableAction(
+                          onPressed: (_) => _unSave(vocab['id']),
+                          backgroundColor: Colors.grey,
+                          foregroundColor: Colors.white,
+                          icon: Icons.bookmark,
+                          label: 'unsaved',
+                        ),
+                      ],
                     ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: Slidable(
-                      key: ValueKey(vocab['id']),
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        extentRatio: 0.30,
-                        children: [
-                          SlidableAction(
-                            onPressed: (_) => _unSave(vocab['id']),
-                            backgroundColor: Colors.grey,
-                            foregroundColor: Colors.white,
-                            icon: Icons.bookmark,
-                            label: 'unsaved',
-                            padding: EdgeInsets.zero,
-                          ),
-                        ],
-                      ),
-                      child: Container(
-                        height: 50,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        color: Colors.white,
-                        child: ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            vocab['words'] ?? '',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          onTap: () {
-                            bool isOn = true;
+                    child: GestureDetector(
+                      onTap: () {
+                        bool isOn = true;
 
-                            showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (context) {
-                                return Center(
-                                  child: StatefulBuilder(
-                                    builder: (context, setState) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 40.0,
+                        showDialog(
+                          context: context,
+                          barrierDismissible: true,
+                          builder: (context) {
+                            return Center(
+                              child: StatefulBuilder(
+                                builder: (context, setState) {
+                                  return Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 40.0,
+                                    ),
+
+                                    child: SizedBox(
+                                      height: 250,
+                                      child: GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isOn = !isOn;
+                                          });
+                                        },
+                                        child: CardVocab(
+                                          vocab: vocab,
+                                          isOn: isOn,
+                                          title: 'Saved',
+                                          showMenu: false,
                                         ),
-                                        child: SizedBox(
-                                          height: 250,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                isOn = !isOn;
-                                              });
-                                            },
-                                            child: CardVocab(
-                                              vocab: vocab,
-                                              isOn: isOn,
-                                              title: 'Saved',
-                                              showMenu: false,
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
-                                );
-                              },
+                                      ),
+                                    ),
+                                  );
+                                },
+                              ),
                             );
                           },
+                        );
+                      },
+                      child: Card(
+                        // margin: EdgeInsets.symmetric(vertical: 8),
+                        child: Container(
+                          alignment: Alignment.centerLeft,
+                          padding: EdgeInsets.symmetric(horizontal: 16),
+                          child: ListTile(
+                            contentPadding: EdgeInsets.zero,
+                            title: Text(
+                              vocab['words'] ?? '',
+                              textAlign: TextAlign.start,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                          ),
                         ),
                       ),
                     ),

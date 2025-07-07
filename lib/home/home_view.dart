@@ -89,11 +89,21 @@ class _HomeState extends State<Home> {
   Future<List<Map<String, dynamic>>> fetchVocabList(
     String collectionPath,
   ) async {
-    final snapshot = await FirebaseFirestore.instance
-        .collection(collectionPath)
-        .get();
+    QuerySnapshot<Map<String, dynamic>> snapshot;
+
+    if (collectionPath == 'vocab_user') {
+      snapshot = await FirebaseFirestore.instance
+          .collection(collectionPath)
+          .where('created_by', isEqualTo: Storage().getUserId())
+          .get();
+    } else {
+      snapshot = await FirebaseFirestore.instance
+          .collection(collectionPath)
+          .get();
+    }
 
     // return snapshot.docs.map((doc) => doc.data()).toList();
+
     return snapshot.docs.map((doc) {
       final data = doc.data();
       data['id'] = doc.id;

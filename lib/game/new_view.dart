@@ -117,129 +117,164 @@ class _NewGameState extends State<NewGame> {
           ),
           backgroundColor: Color(0xFF0D243D),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 16),
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        controller: _levelController,
-                        decoration: InputDecoration(
-                          labelText: 'Title',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              children: [
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                          controller: _levelController,
+                          decoration: InputDecoration(
+                            labelText: 'Title',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Please enter a Title'
+                              : null,
                         ),
-                        validator: (value) => value == null || value.isEmpty
-                            ? 'Please enter a Title'
-                            : null,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _wordController,
-                        decoration: InputDecoration(
-                          labelText: 'Words',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          controller: _wordController,
+                          decoration: InputDecoration(
+                            labelText: 'Words',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Please enter a word'
+                              : null,
                         ),
-                        validator: (value) => value == null || value.isEmpty
-                            ? 'Please enter a word'
-                            : null,
-                      ),
-                      const SizedBox(height: 16),
-                      TextFormField(
-                        controller: _descriptionController,
-                        decoration: InputDecoration(
-                          labelText: 'Description',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(12),
+                        const SizedBox(height: 16),
+                        TextFormField(
+                          controller: _descriptionController,
+                          decoration: InputDecoration(
+                            labelText: 'Description',
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
                           ),
+                          maxLines: 4,
+                          validator: (value) => value == null || value.isEmpty
+                              ? 'Please enter description'
+                              : null,
                         ),
-                        maxLines: 4,
-                        validator: (value) => value == null || value.isEmpty
-                            ? 'Please enter description'
-                            : null,
-                      ),
-                      const SizedBox(height: 16),
-                      GestureDetector(
-                        onTap: () async {
-                          final imgPath = await UploadImg().pickImage();
-                          if (imgPath.isNotEmpty) {
-                            final url = await UploadImg().uploadImage(imgPath);
-                            setState(() {
-                              imageUrl = url;
-                            });
-                          }
-                        },
-                        child: Container(
-                          height: 100,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            border: Border.all(color: Colors.black),
-                          ),
-                          child: Center(
-                            child: imageUrl.isNotEmpty
-                                ? Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Image.network(
-                                      imageUrl,
-                                      height: 100,
-                                      fit: BoxFit.contain,
+                        const SizedBox(height: 16),
+                        GestureDetector(
+                          onTap: () async {
+                            final imgPath = await UploadImg().pickImage();
+                            if (imgPath.isNotEmpty) {
+                              final url = await UploadImg().uploadImage(
+                                imgPath,
+                              );
+                              setState(() {
+                                imageUrl = url;
+                              });
+                            }
+                          },
+                          child: Container(
+                            height: 100,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.black),
+                            ),
+                            child: Center(
+                              child: imageUrl.isNotEmpty
+                                  ? Stack(
+                                      children: [
+                                        Container(
+                                          height: 100,
+                                          width: double.infinity,
+                                          padding: EdgeInsets.all(8),
+                                          child: Image.network(
+                                            imageUrl,
+                                            fit: BoxFit.contain,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          top: 0,
+                                          right: 0,
+                                          child: Material(
+                                            color: Colors.transparent,
+                                            child: InkWell(
+                                              onTap: () {
+                                                setState(() {
+                                                  imageUrl = '';
+                                                });
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                  color: Colors.black54,
+                                                  shape: BoxShape.circle,
+                                                ),
+                                                padding: EdgeInsets.all(4),
+                                                child: Icon(
+                                                  Icons.close,
+                                                  color: Colors.white,
+                                                  size: 16,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  : Icon(
+                                      Icons.image,
+                                      size: 32,
+                                      color: Colors.grey,
                                     ),
-                                  )
-                                : Icon(
-                                    Icons.image,
-                                    size: 32,
-                                    color: Colors.grey,
-                                  ),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 28),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed: _cancelForm,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(8),
+                const SizedBox(height: 28),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    ElevatedButton(
+                      onPressed: _cancelForm,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(8),
+                        ),
                       ),
+                      child: Text("Cancel"),
                     ),
-                    child: Text("Cancel"),
-                  ),
-                  ElevatedButton(
-                    onPressed: _submitForm,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadiusGeometry.circular(8),
+                    ElevatedButton(
+                      onPressed: _submitForm,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadiusGeometry.circular(8),
+                        ),
                       ),
+                      child: Text(isEditMode ? "Update" : "Submit"),
                     ),
-                    child: Text(isEditMode ? "Update" : "Submit"),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

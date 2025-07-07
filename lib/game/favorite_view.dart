@@ -1,8 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cardy/game/new_view.dart';
 import 'package:flutter_cardy/game/widget/card_vocab.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
 
 class FavoriteView extends StatefulWidget {
   const FavoriteView({super.key});
@@ -171,6 +173,23 @@ class _FavoriteViewState extends State<FavoriteView> {
                                               isOn: isOn,
                                               title: 'Saved',
                                               showMenu: false,
+                                              onEdit: () async {
+                                                final newVocab = await Get.to(
+                                                  () {
+                                                    return NewGame(
+                                                      docId:
+                                                          _savedVocabs[i]['id'],
+                                                      wordData: _savedVocabs[i],
+                                                    );
+                                                  },
+                                                );
+
+                                                if (newVocab != null) {
+                                                  setState(() {
+                                                    _savedVocabs[i] = newVocab;
+                                                  });
+                                                }
+                                              },
                                             ),
                                           ),
                                         ),

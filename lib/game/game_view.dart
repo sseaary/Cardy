@@ -126,6 +126,20 @@ class _GameViewState extends State<GameView> {
                       vocab: fakeList[idx],
                       isOn: isOn,
                       title: title,
+                      onEdit: () async {
+                        final newVocab = await Get.to(() {
+                          return NewGame(
+                            docId: fakeList[idx]['id'],
+                            wordData: fakeList[idx],
+                          );
+                        });
+
+                        if (newVocab != null) {
+                          setState(() {
+                            fakeList[idx] = newVocab;
+                          });
+                        }
+                      },
                     ),
                   );
                 },

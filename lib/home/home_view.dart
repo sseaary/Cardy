@@ -205,8 +205,9 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        onPressed: () {
-          Get.toNamed("/newGame", arguments: {"title": ''});
+        onPressed: () async {
+          await Get.toNamed("/newGame", arguments: {"title": ''});
+          setItems();
         },
         shape: CircleBorder(),
         child: Icon(Icons.add, color: Color(0xFF2E82DB), size: 30),

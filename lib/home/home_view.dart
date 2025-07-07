@@ -146,7 +146,10 @@ class _HomeState extends State<Home> {
       backgroundColor: Color(0xFF0D243D),
       drawer: _profile(),
       appBar: AppBar(
-        title: Text("CARDY", style: TextStyle(color: Colors.white)),
+        title: Text(
+          "C A R D Y",
+          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        ),
         backgroundColor: Color(0xFF0D243D),
         centerTitle: true,
         iconTheme: IconThemeData(color: Colors.white),

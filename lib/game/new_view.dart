@@ -206,8 +206,8 @@ class _NewGameState extends State<NewGame> {
                                           ),
                                         ),
                                         Positioned(
-                                          top: 0,
-                                          right: 0,
+                                          top: 4,
+                                          right: 4,
                                           child: Material(
                                             color: Colors.transparent,
                                             child: InkWell(

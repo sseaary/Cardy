@@ -136,7 +136,6 @@ class _MyWidgetState extends State<CardVocab> {
                                           .doc(docId)
                                           .delete();
                                       Get.back(result: 'deleted');
-
                                       // Optional: แสดง SnackBar หรือ Toast
                                       ScaffoldMessenger.of(
                                         context,

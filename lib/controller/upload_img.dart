@@ -21,15 +21,20 @@ class UploadImg {
     if (imgFile == null) {
       return "no imagef found";
     }
-    final cloudUrl = "https://api.cloudinary.com/v1_1/dhzgzeoqe/image/upload";
-    final ImageData = MultipartFile(
-      imgFile,
-      filename: imagePath.split("/").last,
-    );
-    Response res = await sendApi.post(
-      cloudUrl,
-      FormData({"upload_preset": "cardyPic", "file": ImageData}),
-    );
-    return res.body["secure_url"] ?? "error";
+
+    try {
+      final cloudUrl = "https://api.cloudinary.com/v1_1/dhzgzeoqe/image/upload";
+      final ImageData = MultipartFile(
+        imgFile,
+        filename: imagePath.split("/").last,
+      );
+      Response res = await sendApi.post(
+        cloudUrl,
+        FormData({"upload_preset": "cardyPic", "file": ImageData}),
+      );
+      return res.body["secure_url"] ?? "error";
+    } catch (_) {
+      return "error";
+    }
   }
 }

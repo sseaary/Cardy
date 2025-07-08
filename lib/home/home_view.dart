@@ -146,7 +146,6 @@ class _HomeState extends State<Home> {
   void initState() {
     setItems();
     setUserData();
-
     super.initState();
   }
 
@@ -278,16 +277,14 @@ class _HomeState extends State<Home> {
                   .where((json) => json['level'] == title["title_name"])
                   .toList();
 
-              final result = await Get.toNamed(
+              await Get.toNamed(
                 "/gameView",
                 arguments: {
                   "vocabs": newVocabsFromLevel,
                   "title": '${title["title_name"]}',
                 },
               );
-              if (result == true) {
-                await setItems();
-              }
+              setItems();
             },
           ),
         ),

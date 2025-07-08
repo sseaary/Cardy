@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_cardy/game/new_view.dart';
 import 'package:get/get.dart';
 
 class CardVocab extends StatefulWidget {
-  Map<String, dynamic> vocab;
+  final Map<String, dynamic> vocab;
   final bool isOn;
   final String title;
-  final bool showMenu;
-  Function()? onEdit;
+  final bool? showMenu;
+  final Function()? onEdit;
 
-  CardVocab({
+  const CardVocab({
     super.key,
     required this.vocab,
     required this.isOn,

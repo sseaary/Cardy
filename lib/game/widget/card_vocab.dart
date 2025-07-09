@@ -72,11 +72,11 @@ class _MyWidgetState extends State<CardVocab> {
         Container(
           padding: EdgeInsets.all(18),
           decoration: BoxDecoration(
-            color: Color.fromRGBO(143, 217, 255, 1),
+            color: Color(0xFFA3EFF2),
             borderRadius: BorderRadius.circular(12),
           ),
           child: Align(
-            alignment: Alignment.centerLeft,
+            alignment: Alignment.center,
             child: Text(
               text,
               style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),

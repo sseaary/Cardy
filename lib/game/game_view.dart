@@ -74,133 +74,149 @@ class _GameViewState extends State<GameView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF0D243D),
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.back(result: true);
-          },
-          icon: Icon(Icons.arrow_back, color: Colors.white),
+    return Stack(
+      children: [
+        Image.asset(
+          "assets/image/abc.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: MediaQuery.sizeOf(context).height,
         ),
-        title: Text(title, style: TextStyle(color: Colors.white)),
-        backgroundColor: Color(0xFF0D243D),
-        actions: [
-          IconButton(
-            onPressed: () async {
-              final newVocab = await Get.to(() => NewGame(initialTitle: title));
-
-              if (newVocab != null) {
-                setState(() {
-                  fakeList.add(newVocab);
-                  favoriteStatus.add(false);
-                });
-              }
-            },
-            icon: Icon(Icons.add, size: 40, color: Color(0xFF2E82DB)),
-          ),
-        ],
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(40.0),
-              child: PageView.builder(
-                controller: seaController,
-                onPageChanged: (value) {
-                  setState(() {
-                    isOn = true;
-                    index = value;
-                  });
-                },
-                itemCount: fakeList.length,
-                itemBuilder: (context, idx) {
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        isOn = !isOn;
-                      });
-                    },
-                    child: CardVocab(
-                      vocab: fakeList[idx],
-                      isOn: isOn,
-                      title: title,
-                      onEdit: () async {
-                        final newVocab = await Get.to(() {
-                          return NewGame(
-                            docId: fakeList[idx]['id'],
-                            wordData: fakeList[idx],
-                          );
-                        });
-
-                        if (newVocab != null) {
-                          setState(() {
-                            fakeList[idx] = newVocab;
-                          });
-                        }
-                      },
-                    ),
-                  );
-                },
-              ),
+        Container(height: double.infinity, color: Color.fromARGB(103, 0, 0, 0)),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            leading: IconButton(
+              onPressed: () {
+                Get.back(result: true);
+              },
+              icon: Icon(Icons.arrow_back, color: Colors.white),
             ),
-          ),
+            title: Text(title, style: TextStyle(color: Colors.white)),
+            backgroundColor: Color(0xFF0D243D),
+            actions: [
+              IconButton(
+                onPressed: () async {
+                  final newVocab = await Get.to(
+                    () => NewGame(initialTitle: title),
+                  );
 
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              IconButton(
-                onPressed: () {
-                  if ((index - 1) <= -1) return;
-                  setState(() {
-                    index--;
-                    isOn = true;
-                  });
-                  seaController.animateToPage(
-                    index,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.linear,
-                  );
+                  if (newVocab != null) {
+                    setState(() {
+                      fakeList.add(newVocab);
+                      favoriteStatus.add(false);
+                    });
+                  }
                 },
-                icon: Icon(Icons.arrow_back_ios_rounded),
-                iconSize: 40,
-                color: Colors.white,
-              ),
-              IconButton(
-                onPressed: () {
-                  if ((index + 1) >= fakeList.length) return;
-                  setState(() {
-                    index++;
-                    isOn = true;
-                  });
-                  seaController.animateToPage(
-                    index,
-                    duration: Duration(milliseconds: 200),
-                    curve: Curves.linear,
-                  );
-                },
-                icon: Icon(Icons.arrow_forward_ios_rounded),
-                iconSize: 40,
-                color: Colors.white,
+                icon: Icon(Icons.add, size: 40, color: Color(0xFF2E82DB)),
               ),
             ],
           ),
-          Spacer(),
-          SafeArea(
-            minimum: const EdgeInsets.only(bottom: 20),
-            child: IconButton(
-              onPressed: () => _toggleFavorite(index),
-              icon: Icon(
-                favoriteStatus[index] ? Icons.favorite : Icons.favorite_border,
-                color: Colors.white,
-                size: 40,
+
+          body: Column(
+            children: [
+              SizedBox(height: 220),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
+                  child: PageView.builder(
+                    controller: seaController,
+                    onPageChanged: (value) {
+                      setState(() {
+                        isOn = true;
+                        index = value;
+                      });
+                    },
+                    itemCount: fakeList.length,
+                    itemBuilder: (context, idx) {
+                      return GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            isOn = !isOn;
+                          });
+                        },
+
+                        child: CardVocab(
+                          vocab: fakeList[idx],
+                          isOn: isOn,
+                          title: title,
+                          onEdit: () async {
+                            final newVocab = await Get.to(() {
+                              return NewGame(
+                                docId: fakeList[idx]['id'],
+                                wordData: fakeList[idx],
+                              );
+                            });
+
+                            if (newVocab != null) {
+                              setState(() {
+                                fakeList[idx] = newVocab;
+                              });
+                            }
+                          },
+                        ),
+                      );
+                    },
+                  ),
+                ),
               ),
-            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      if ((index - 1) <= -1) return;
+                      setState(() {
+                        index--;
+                        isOn = true;
+                      });
+                      seaController.animateToPage(
+                        index,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.linear,
+                      );
+                    },
+                    icon: Icon(Icons.arrow_back_ios_rounded),
+                    iconSize: 40,
+                    color: Colors.white,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      if ((index + 1) >= fakeList.length) return;
+                      setState(() {
+                        index++;
+                        isOn = true;
+                      });
+                      seaController.animateToPage(
+                        index,
+                        duration: Duration(milliseconds: 200),
+                        curve: Curves.linear,
+                      );
+                    },
+                    icon: Icon(Icons.arrow_forward_ios_rounded),
+                    iconSize: 40,
+                    color: Colors.white,
+                  ),
+                ],
+              ),
+              Spacer(),
+              SafeArea(
+                minimum: const EdgeInsets.only(bottom: 20),
+                child: IconButton(
+                  onPressed: () => _toggleFavorite(index),
+                  icon: Icon(
+                    favoriteStatus[index]
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.pink,
+                    size: 40,
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

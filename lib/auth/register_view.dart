@@ -66,7 +66,7 @@ class _RegisterState extends State<Register> {
               gradient: LinearGradient(
                 begin: Alignment(-0.817, -0.576),
                 end: Alignment(0.817, 0.576),
-                colors: [Color(0xFF2E82DB), Color(0xFF0D243D)],
+                colors: [Color(0xFF2E82DB), Color.fromARGB(180, 92, 225, 230)],
                 stops: [0.3, 0.3], // ให้สีเปลี่ยนทันทีที่ครึ่งทาง
               ),
             ),
@@ -182,7 +182,7 @@ class _RegisterState extends State<Register> {
                         text: 'Already have an account? ',
                         style: TextStyle(
                           fontSize: 16,
-                          color: Colors.white,
+                          color: Colors.black,
                           fontWeight: FontWeight.w300,
                         ),
                       ),
@@ -191,7 +191,7 @@ class _RegisterState extends State<Register> {
                         style: TextStyle(
                           fontSize: 16,
                           color: Colors.pink,
-                          fontWeight: FontWeight.w300,
+                          fontWeight: FontWeight.bold,
                           decoration: TextDecoration.underline,
                         ),
                         recognizer: TapGestureRecognizer()

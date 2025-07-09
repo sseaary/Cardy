@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
                 // end: Alignment.bottomRight,
                 begin: Alignment(-0.817, -0.576),
                 end: Alignment(0.817, 0.576),
-                colors: [Color(0xFF2E82DB), Color(0xFF0D243D)],
+                colors: [Color(0xFF2E82DB), Color.fromARGB(180, 92, 225, 230)],
                 stops: [0.3, 0.3], // ให้สีเปลี่ยนทันทีที่ครึ่งทาง
               ),
             ),
@@ -139,7 +139,7 @@ class _LoginState extends State<Login> {
                       text: "Don't have an account? ",
                       style: TextStyle(
                         fontSize: 16,
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w300,
                       ),
                     ),
@@ -148,7 +148,7 @@ class _LoginState extends State<Login> {
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.pink,
-                        fontWeight: FontWeight.w300,
+                        fontWeight: FontWeight.bold,
                         decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()

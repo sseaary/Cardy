@@ -81,132 +81,147 @@ class _FavoriteViewState extends State<FavoriteView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0D243D),
-      appBar: AppBar(
-        title: const Text('Saved', style: TextStyle(color: Colors.white)),
-        centerTitle: true,
-        backgroundColor: const Color(0xFF0D243D),
-        iconTheme: const IconThemeData(color: Colors.white),
-      ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: Colors.white))
-          : _savedVocabs.isEmpty
-          ? const Center(
-              child: Text(
-                'No saved items',
-                style: TextStyle(color: Colors.white),
-              ),
-            )
-          : RefreshIndicator(
-              onRefresh: _loadSavedVocabs,
-              child: ListView.builder(
-                padding: const EdgeInsets.symmetric(vertical: 16),
-                itemCount: _savedVocabs.length,
-                itemBuilder: (context, i) {
-                  final vocab = _savedVocabs[i];
+    return Stack(
+      children: [
+        Image.asset(
+          "assets/image/apple.png",
+          fit: BoxFit.cover,
+          width: double.infinity,
+          height: MediaQuery.sizeOf(context).height,
+        ),
+        Container(height: double.infinity, color: Color.fromARGB(103, 0, 0, 0)),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            title: const Text('Saved', style: TextStyle(color: Colors.white)),
+            centerTitle: true,
+            backgroundColor: const Color(0xFF0D243D),
+            iconTheme: const IconThemeData(color: Colors.white),
+          ),
+          body: _isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(color: Colors.white),
+                )
+              : _savedVocabs.isEmpty
+              ? const Center(
+                  child: Text(
+                    'No saved items',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                )
+              : RefreshIndicator(
+                  onRefresh: _loadSavedVocabs,
+                  child: ListView.builder(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    itemCount: _savedVocabs.length,
+                    itemBuilder: (context, i) {
+                      final vocab = _savedVocabs[i];
 
-                  return Container(
-                    margin: const EdgeInsets.symmetric(
-                      horizontal: 20,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Colors.red,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    clipBehavior: Clip.antiAlias,
-                    child: Slidable(
-                      key: ValueKey(vocab['id']),
-                      endActionPane: ActionPane(
-                        motion: const ScrollMotion(),
-                        extentRatio: 0.30,
-                        children: [
-                          SlidableAction(
-                            onPressed: (_) => _unSave(vocab['id']),
-                            backgroundColor: Colors.grey,
-                            foregroundColor: Colors.white,
-                            icon: Icons.bookmark,
-                            label: 'unsaved',
-                            padding: EdgeInsets.zero,
+                      return Container(
+                        margin: const EdgeInsets.symmetric(
+                          horizontal: 20,
+                          vertical: 6,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        clipBehavior: Clip.antiAlias,
+                        child: Slidable(
+                          key: ValueKey(vocab['id']),
+                          endActionPane: ActionPane(
+                            motion: const ScrollMotion(),
+                            extentRatio: 0.30,
+                            children: [
+                              SlidableAction(
+                                onPressed: (_) => _unSave(vocab['id']),
+                                backgroundColor: Colors.grey,
+                                foregroundColor: Colors.white,
+                                icon: Icons.bookmark,
+                                label: 'unsaved',
+                                padding: EdgeInsets.zero,
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                      child: Container(
-                        height: 50,
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        color: Colors.white,
-                        child: ListTile(
-                          contentPadding: EdgeInsets.zero,
-                          title: Text(
-                            vocab['words'] ?? '',
-                            style: const TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.bold,
-                            ),
-                            textAlign: TextAlign.left,
-                          ),
-                          onTap: () {
-                            bool isOn = true;
+                          child: Container(
+                            height: 50,
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
+                            color: Colors.white,
+                            child: ListTile(
+                              contentPadding: EdgeInsets.zero,
+                              title: Text(
+                                vocab['words'] ?? '',
+                                style: const TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                textAlign: TextAlign.left,
+                              ),
+                              onTap: () {
+                                bool isOn = true;
 
-                            showDialog(
-                              context: context,
-                              barrierDismissible: true,
-                              builder: (context) {
-                                return Center(
-                                  child: StatefulBuilder(
-                                    builder: (context, setState) {
-                                      return Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 40.0,
-                                        ),
-                                        child: SizedBox(
-                                          height: 250,
-                                          child: GestureDetector(
-                                            onTap: () {
-                                              setState(() {
-                                                isOn = !isOn;
-                                              });
-                                            },
-                                            child: CardVocab(
-                                              vocab: vocab,
-                                              isOn: isOn,
-                                              title: 'Saved',
-                                              showMenu: false,
-                                              onEdit: () async {
-                                                final newVocab = await Get.to(
-                                                  () {
-                                                    return NewGame(
-                                                      docId:
-                                                          _savedVocabs[i]['id'],
-                                                      wordData: _savedVocabs[i],
-                                                    );
-                                                  },
-                                                );
-
-                                                if (newVocab != null) {
-                                                  setState(() {
-                                                    _savedVocabs[i] = newVocab;
-                                                  });
-                                                }
-                                              },
+                                showDialog(
+                                  context: context,
+                                  barrierDismissible: true,
+                                  builder: (context) {
+                                    return Center(
+                                      child: StatefulBuilder(
+                                        builder: (context, setState) {
+                                          return Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                              horizontal: 40.0,
                                             ),
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                  ),
+                                            child: SizedBox(
+                                              height: 250,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  setState(() {
+                                                    isOn = !isOn;
+                                                  });
+                                                },
+                                                child: CardVocab(
+                                                  vocab: vocab,
+                                                  isOn: isOn,
+                                                  title: 'Saved',
+                                                  showMenu: false,
+                                                  onEdit: () async {
+                                                    final newVocab = await Get.to(
+                                                      () {
+                                                        return NewGame(
+                                                          docId:
+                                                              _savedVocabs[i]['id'],
+                                                          wordData:
+                                                              _savedVocabs[i],
+                                                        );
+                                                      },
+                                                    );
+
+                                                    if (newVocab != null) {
+                                                      setState(() {
+                                                        _savedVocabs[i] =
+                                                            newVocab;
+                                                      });
+                                                    }
+                                                  },
+                                                ),
+                                              ),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    );
+                                  },
                                 );
                               },
-                            );
-                          },
+                            ),
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
+                      );
+                    },
+                  ),
+                ),
+        ),
+      ],
     );
   }
 }

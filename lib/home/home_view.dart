@@ -152,7 +152,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF0D243D),
+      backgroundColor: Color(0xFF5ce1e6),
       drawer: _profile(),
       appBar: AppBar(
         title: Text(
@@ -171,50 +171,63 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(24.0),
-            child: TextField(
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                hintText: 'search',
-                suffixIcon: Icon(Icons.search_rounded),
-              ),
-              onChanged: (value) {
-                if (value.isEmpty) {
-                  title = _title;
-                } else {
-                  title = title.where((e) {
-                    return (e['title_name'] as String).toUpperCase().contains(
-                      value.toUpperCase(),
-                    );
-                  }).toList();
-                }
-                setState(() {});
-              },
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color.fromARGB(255, 64, 220, 225),
+              Color(0xFF2E82DB),
+              Color.fromARGB(255, 18, 51, 86),
+            ],
           ),
-          SizedBox(height: 20),
-          Expanded(
-            child: RefreshIndicator(
-              onRefresh: () async => await setItems(),
-              child: ListView.builder(
-                itemCount: title.length,
-                itemBuilder: (context, index) {
-                  final newItem = title[index];
-                  return _titleCard(newItem);
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: TextField(
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide.none,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  hintText: 'search',
+                  suffixIcon: Icon(Icons.search_rounded),
+                ),
+                onChanged: (value) {
+                  if (value.isEmpty) {
+                    title = _title;
+                  } else {
+                    title = title.where((e) {
+                      return (e['title_name'] as String).toUpperCase().contains(
+                        value.toUpperCase(),
+                      );
+                    }).toList();
+                  }
+                  setState(() {});
                 },
               ),
             ),
-          ),
-        ],
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async => await setItems(),
+                child: ListView.builder(
+                  itemCount: title.length,
+                  itemBuilder: (context, index) {
+                    final newItem = title[index];
+                    return _titleCard(newItem, index);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
+
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () async {
@@ -227,13 +240,13 @@ class _HomeState extends State<Home> {
     );
   }
 
-  Widget _titleCard(title) {
+  Widget _titleCard(title, int index) {
     List levelDefault = ['A1', 'A2', 'B1', 'B2'];
     bool isShow = levelDefault.contains('${title["title_name"]}');
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
       decoration: BoxDecoration(
-        color: Colors.red,
+        color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
       clipBehavior: Clip.antiAlias,
@@ -258,20 +271,24 @@ class _HomeState extends State<Home> {
         child: Container(
           height: 100,
           padding: EdgeInsets.all(16),
-          color: Colors.white,
+          color: index.isOdd ? Colors.white : Color(0xFFA3EFF2),
 
           child: ListTile(
             title: Text(
               isShow
                   ? 'Level - ${title["title_name"]}'
-                  : ' ${title["title_name"]}',
+                  : '${title["title_name"]}',
               style: TextStyle(
-                color: Colors.black,
+                color: index.isOdd ? Colors.black : Colors.black,
                 fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
 
-            subtitle: Text("cards: ${title["total"]}"),
+            subtitle: Text(
+              "cards: ${title["total"]}",
+              // style: TextStyle(color: Colors.pink),
+            ),
             onTap: () async {
               List newVocabsFromLevel = items
                   .where((json) => json['level'] == title["title_name"])
@@ -301,6 +318,7 @@ class _HomeState extends State<Home> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            Image.asset("assets/icon/app_iconNew.png", fit: BoxFit.contain),
             SizedBox(height: 20),
             Text(
               userName ?? '',

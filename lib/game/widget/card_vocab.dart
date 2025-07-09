@@ -57,7 +57,7 @@ class _MyWidgetState extends State<CardVocab> {
           Expanded(
             child: Image.network(
               url,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
               errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
             ),
           ),

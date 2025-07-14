@@ -172,7 +172,7 @@ class _FavoriteViewState extends State<FavoriteView> {
                                               horizontal: 30.0,
                                             ),
                                             child: SizedBox(
-                                              height: 220,
+                                              height: 200,
                                               child: GestureDetector(
                                                 onTap: () {
                                                   setState(() {

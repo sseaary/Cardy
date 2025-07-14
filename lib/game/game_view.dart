@@ -115,7 +115,7 @@ class _GameViewState extends State<GameView> {
 
           body: Column(
             children: [
-              SizedBox(height: 220),
+              SizedBox(height: 250),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),

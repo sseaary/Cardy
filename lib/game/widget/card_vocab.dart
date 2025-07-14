@@ -48,21 +48,41 @@ class _MyWidgetState extends State<CardVocab> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        children: [
-          Text(
-            text,
-            style: TextStyle(fontSize: 28, fontWeight: FontWeight.w500),
-          ),
-          Expanded(
-            child: Image.network(
-              url,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+      child: (url == false || url.isEmpty)
+          ? Align(
+              alignment: Alignment.centerLeft,
+              child: SingleChildScrollView(
+                child: Text(
+                  text,
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                ),
+              ),
+            )
+          : Row(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      text,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(width: 10),
+                Expanded(
+                  flex: 1,
+                  child: Image.network(
+                    url,
+                    fit: BoxFit.contain,
+                    errorBuilder: (context, error, stackTrace) =>
+                        Icon(Icons.error),
+                  ),
+                ),
+              ],
             ),
-          ),
-        ],
-      ),
     );
   }
 

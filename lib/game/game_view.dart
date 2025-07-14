@@ -18,7 +18,7 @@ class _GameViewState extends State<GameView> {
   bool isOn = true;
   int index = 0;
   late List<bool> favoriteStatus;
-  late PageController seaController;
+  late PageController pageController;
   String uid = FirebaseAuth.instance.currentUser!.uid;
   List fakeList = Get.arguments["vocabs"];
 
@@ -26,7 +26,7 @@ class _GameViewState extends State<GameView> {
   void initState() {
     super.initState();
     favoriteStatus = List.filled(fakeList.length, false);
-    seaController = PageController();
+    pageController = PageController();
     _loadFavoriteStatus();
   }
 
@@ -68,7 +68,7 @@ class _GameViewState extends State<GameView> {
 
   @override
   void dispose() {
-    seaController.dispose();
+    pageController.dispose();
     super.dispose();
   }
 
@@ -120,7 +120,7 @@ class _GameViewState extends State<GameView> {
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 20),
                   child: PageView.builder(
-                    controller: seaController,
+                    controller: pageController,
                     onPageChanged: (value) {
                       setState(() {
                         isOn = true;
@@ -170,7 +170,7 @@ class _GameViewState extends State<GameView> {
                         index--;
                         isOn = true;
                       });
-                      seaController.animateToPage(
+                      pageController.animateToPage(
                         index,
                         duration: Duration(milliseconds: 200),
                         curve: Curves.linear,
@@ -187,7 +187,7 @@ class _GameViewState extends State<GameView> {
                         index++;
                         isOn = true;
                       });
-                      seaController.animateToPage(
+                      pageController.animateToPage(
                         index,
                         duration: Duration(milliseconds: 200),
                         curve: Curves.linear,

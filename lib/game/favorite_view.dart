@@ -169,10 +169,10 @@ class _FavoriteViewState extends State<FavoriteView> {
                                         builder: (context, setState) {
                                           return Padding(
                                             padding: const EdgeInsets.symmetric(
-                                              horizontal: 40.0,
+                                              horizontal: 30.0,
                                             ),
                                             child: SizedBox(
-                                              height: 250,
+                                              height: 220,
                                               child: GestureDetector(
                                                 onTap: () {
                                                   setState(() {

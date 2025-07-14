@@ -77,7 +77,6 @@ class _NewGameState extends State<NewGame> {
           actions: [
             TextButton(
               onPressed: () {
-                print(newVocab);
                 Navigator.pop(context);
                 Get.back(result: newVocab);
               },
@@ -162,6 +161,7 @@ class _NewGameState extends State<NewGame> {
                             const SizedBox(height: 16),
                             TextFormField(
                               controller: _wordController,
+                              maxLength: 20,
                               decoration: InputDecoration(
                                 labelText: 'Words',
                                 border: OutlineInputBorder(
